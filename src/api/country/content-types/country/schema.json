@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "countries",
+  "info": {
+    "singularName": "country",
+    "pluralName": "countries",
+    "displayName": "Country"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "countryName": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "currencyCode": {
+      "type": "string"
+    },
+    "currencySymbol": {
+      "type": "string"
+    },
+    "flag": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "leadParagraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "slug": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": true
+    },
+    "seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "sourceReference": {
+      "type": "component",
+      "component": "content.source-reference",
+      "repeatable": true
+    },
+    "responsibleGambling": {
+      "type": "component",
+      "component": "unit.responsible-gambling",
+      "repeatable": true
+    },
+    "casino_reviews": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "alternative_operators"
+    },
+    "online_casino_review": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "country"
+    },
+    "casino_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "country"
+    },
+    "sportsbook_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "mappedBy": "country"
+    }
+  }
+}

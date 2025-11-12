@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "article_title": {
+      "type": "string"
+    },
+    "short_title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "article_title"
+    },
+    "url_path": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "lead_paragraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "main_content": {
+      "type": "dynamiczone",
+      "components": [
+        "content.rich-text",
+        "shared.cta-button",
+        "shared.pros-cons",
+        "unit.responsible-gambling"
+      ]
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "source_refernces": {
+      "type": "component",
+      "component": "content.source-reference",
+      "repeatable": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "written_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "fact_checked_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "article"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "inversedBy": "related_articles"
+    },
+    "related_articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "articles"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "inversedBy": "suggested_reading"
+    },
+    "suggested_reading": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "article"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_cta_buttons",
+  "info": {
+    "displayName": "ctaButton"
+  },
+  "options": {},
+  "attributes": {
+    "ctaLinkText": {
+      "type": "string"
+    },
+    "ctaURL": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

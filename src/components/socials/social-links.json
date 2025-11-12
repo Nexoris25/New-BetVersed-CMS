@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_socials_social_links",
+  "info": {
+    "displayName": "SocialLinks"
+  },
+  "options": {},
+  "attributes": {
+    "Platform": {
+      "type": "string",
+      "unique": false
+    },
+    "URL": {
+      "type": "string"
+    },
+    "Icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

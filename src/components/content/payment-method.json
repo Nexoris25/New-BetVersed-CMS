@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_content_payment_methods",
+  "info": {
+    "displayName": "payment-method"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "deposit",
+        "withdrawal",
+        "deposit and withdrawal",
+        "e-wallet",
+        "bank",
+        "card",
+        "crypto",
+        "voucher"
+      ]
+    }
+  },
+  "config": {}
+}

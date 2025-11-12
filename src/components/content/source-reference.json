@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_content_source_references",
+  "info": {
+    "displayName": "Source Reference"
+  },
+  "options": {},
+  "attributes": {
+    "source_title": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "accessed_date": {
+      "type": "date"
+    }
+  },
+  "config": {}
+}

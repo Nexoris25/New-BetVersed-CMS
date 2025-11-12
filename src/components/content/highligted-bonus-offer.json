@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_content_highligted_bonus_offers",
+  "info": {
+    "displayName": "Highligted Bonus Offer"
+  },
+  "options": {},
+  "attributes": {
+    "bonus_name": {
+      "type": "string"
+    },
+    "bonus_amount_percentage": {
+      "type": "string"
+    },
+    "bonus_detail": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "promo_code": {
+      "type": "string"
+    },
+    "exclusive_code": {
+      "type": "boolean"
+    },
+    "cta_button": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

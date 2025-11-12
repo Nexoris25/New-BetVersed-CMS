@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_content_trust_signals",
+  "info": {
+    "displayName": "Trust Signals"
+  },
+  "options": {},
+  "attributes": {
+    "license_verified": {
+      "type": "boolean"
+    },
+    "security_features": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "data_protection_measures": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "responsible_gambling_link": {
+      "type": "component",
+      "component": "unit.responsible-gambling",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

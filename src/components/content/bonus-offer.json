@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_content_bonus_offers",
+  "info": {
+    "displayName": "Bonus Offer"
+  },
+  "options": {},
+  "attributes": {
+    "bonus_name": {
+      "type": "string"
+    },
+    "bonus_amount": {
+      "type": "string"
+    },
+    "bonus_detail": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "promo_code": {
+      "type": "string"
+    },
+    "exclusive_code": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

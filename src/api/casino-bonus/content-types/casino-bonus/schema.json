@@ -1,0 +1,140 @@
+{
+  "kind": "collectionType",
+  "collectionName": "casino_bonuses",
+  "info": {
+    "singularName": "casino-bonus",
+    "pluralName": "casino-bonuses",
+    "displayName": "Casino Bonus"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page_title": {
+      "type": "string"
+    },
+    "short_title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "short_title"
+    },
+    "url_path": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
+    },
+    "lead_paragraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "isRecommended": {
+      "type": "boolean"
+    },
+    "highlighted_bonus_offer": {
+      "type": "component",
+      "component": "content.highligted-bonus-offer",
+      "repeatable": false
+    },
+    "review_summary": {
+      "type": "component",
+      "component": "content.review-summary",
+      "repeatable": false
+    },
+    "prosCons": {
+      "type": "component",
+      "component": "shared.pros-cons",
+      "repeatable": false
+    },
+    "main_content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "more_content_options": {
+      "type": "dynamiczone",
+      "components": [
+        "unit.label-and-value",
+        "shared.cta-button",
+        "content.rich-text",
+        "content.bonus-offer",
+        "content.trust-signals"
+      ]
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "source_refernces": {
+      "type": "component",
+      "component": "content.source-reference",
+      "repeatable": false
+    },
+    "last_tested_date": {
+      "type": "date"
+    },
+    "operator_country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::operator-country.operator-country",
+      "inversedBy": "casino_bonuses"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "casino_bonuses"
+    },
+    "reviewed_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "casino_bonuses"
+    },
+    "fact_checked_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "casino_bonus"
+    },
+    "sportsbook_review": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "inversedBy": "related_casino_bonus"
+    },
+    "related_casino_review": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino-review.casino-review",
+      "inversedBy": "casino_bonuses"
+    },
+    "sportsbook_bonus": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "inversedBy": "related_casino_bonus"
+    },
+    "trust_signal": {
+      "type": "component",
+      "component": "content.trust-signals",
+      "repeatable": false
+    }
+  }
+}

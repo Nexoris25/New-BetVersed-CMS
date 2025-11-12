@@ -1,0 +1,91 @@
+{
+  "kind": "collectionType",
+  "collectionName": "operator_countries",
+  "info": {
+    "singularName": "operator-country",
+    "pluralName": "operator-countries",
+    "displayName": "Operator Country"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "operatorLegalName": {
+      "type": "string"
+    },
+    "isLicensed": {
+      "type": "boolean"
+    },
+    "isVerified": {
+      "type": "boolean"
+    },
+    "licenseInfo": {
+      "type": "component",
+      "component": "shared.licence-detail",
+      "repeatable": true
+    },
+    "website": {
+      "type": "string"
+    },
+    "hasMobileApp": {
+      "type": "boolean"
+    },
+    "paymentMethods": {
+      "type": "component",
+      "component": "content.payment-method",
+      "repeatable": true
+    },
+    "supportChannels": {
+      "type": "component",
+      "component": "unit.label-and-value",
+      "repeatable": true
+    },
+    "last_tested_date": {
+      "type": "date"
+    },
+    "additionalNotes": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "casino_reviews": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "operator_countries"
+    },
+    "casino_review": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "operator_country"
+    },
+    "casino_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "operator_country"
+    },
+    "sportsbook_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "mappedBy": "operator_country"
+    },
+    "sportsbook_bonuseses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "inversedBy": "alternative_operators"
+    },
+    "sportsbook_reviews": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "inversedBy": "alternative_operators"
+    }
+  }
+}

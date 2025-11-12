@@ -1,0 +1,76 @@
+{
+  "kind": "singleType",
+  "collectionName": "homes",
+  "info": {
+    "singularName": "home",
+    "pluralName": "homes",
+    "displayName": "Home"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page_title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "page_title"
+    },
+    "hero_section": {
+      "type": "component",
+      "component": "content.hero-section",
+      "repeatable": false
+    },
+    "lead_paragraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "featured_sportsbooks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-review.sportsbook-review"
+    },
+    "featured_casinos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-review.casino-review"
+    },
+    "featured_casino_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-bonus.casino-bonus"
+    },
+    "featured_sportsbook_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus"
+    },
+    "seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "richText": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "support_organizations": {
+      "type": "component",
+      "component": "unit.responsible-gambling",
+      "repeatable": true
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_unit_label_and_values",
+  "info": {
+    "displayName": "Label and Value"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

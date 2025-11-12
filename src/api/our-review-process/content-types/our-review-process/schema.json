@@ -1,0 +1,65 @@
+{
+  "kind": "singleType",
+  "collectionName": "our_review_processes",
+  "info": {
+    "singularName": "our-review-process",
+    "pluralName": "our-review-processes",
+    "displayName": "Our Review Process"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page_title": {
+      "type": "string"
+    },
+    "short_title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "short_title"
+    },
+    "url_path": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "lead_paragraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "main_content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "lastUpdated": {
+      "type": "date"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author"
+    }
+  }
+}

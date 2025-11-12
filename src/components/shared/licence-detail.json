@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shared_licence_details",
+  "info": {
+    "displayName": "Licence Detail"
+  },
+  "options": {},
+  "attributes": {
+    "licensingAuthority": {
+      "type": "string"
+    },
+    "licenseNumber": {
+      "type": "string"
+    },
+    "website_url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

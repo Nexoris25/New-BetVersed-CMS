@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_shared_seos",
+  "info": {
+    "displayName": "seo"
+  },
+  "options": {},
+  "attributes": {
+    "metaTitle": {
+      "type": "string",
+      "maxLength": 60,
+      "required": true
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 160,
+      "required": true
+    },
+    "metaImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "robotsDirectives": {
+      "type": "enumeration",
+      "required": true,
+      "default": "index, follow",
+      "enum": [
+        "index, follow",
+        "noindex, follow",
+        "index, nofollow",
+        "noindex, nofollow"
+      ]
+    }
+  },
+  "config": {}
+}

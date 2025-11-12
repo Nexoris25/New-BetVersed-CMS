@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_shared_contact_forms",
+  "info": {
+    "displayName": "contact_form"
+  },
+  "options": {},
+  "attributes": {
+    "form_title": {
+      "type": "string"
+    },
+    "intro_text": {
+      "type": "string"
+    },
+    "name_label": {
+      "type": "string"
+    },
+    "email_label": {
+      "type": "string"
+    },
+    "message_subject": {
+      "type": "string"
+    },
+    "message_content": {
+      "type": "text"
+    },
+    "consent_label": {
+      "type": "string"
+    },
+    "isConsented": {
+      "type": "boolean"
+    },
+    "submit_butten_text": {
+      "type": "string"
+    },
+    "success_message": {
+      "type": "string"
+    },
+    "failure_message": {
+      "type": "string"
+    },
+    "receipient_email": {
+      "type": "email"
+    }
+  },
+  "config": {}
+}

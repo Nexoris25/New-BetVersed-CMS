@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_unit_game_names",
+  "info": {
+    "displayName": "Game Name"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

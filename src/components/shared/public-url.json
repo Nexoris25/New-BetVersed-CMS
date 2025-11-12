@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_public_urls",
+  "info": {
+    "displayName": "Public URL"
+  },
+  "options": {},
+  "attributes": {
+    "path": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

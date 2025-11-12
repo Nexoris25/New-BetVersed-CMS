@@ -1,0 +1,134 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sportsbook_reviews",
+  "info": {
+    "singularName": "sportsbook-review",
+    "pluralName": "sportsbook-reviews",
+    "displayName": "Sportsbook Review"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageTitle": {
+      "type": "string"
+    },
+    "shortTitle": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "shortTitle"
+    },
+    "url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
+    },
+    "leadParagraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "isRecommended": {
+      "type": "boolean"
+    },
+    "review_summary": {
+      "type": "component",
+      "component": "content.review-summary",
+      "repeatable": false
+    },
+    "bonus_offer": {
+      "type": "component",
+      "component": "content.bonus-offer",
+      "repeatable": false
+    },
+    "ctaButton": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": false
+    },
+    "prosCons_title": {
+      "type": "string"
+    },
+    "prosCons": {
+      "type": "component",
+      "component": "shared.pros-cons",
+      "repeatable": true
+    },
+    "mainContent": {
+      "type": "dynamiczone",
+      "components": [
+        "content.rich-text",
+        "content.payment-method",
+        "content.bonus-offer",
+        "shared.pros-cons"
+      ]
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "source_refernces": {
+      "type": "component",
+      "component": "content.source-reference",
+      "repeatable": true
+    },
+    "last_tested_date": {
+      "type": "date"
+    },
+    "related_casino": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "related_sportsbook"
+    },
+    "related_casino_bonus": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "sportsbook_review"
+    },
+    "related_sportsbook_bonus": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "mappedBy": "related_sportsbook"
+    },
+    "alternative_operators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "sportsbook_reviews"
+    },
+    "reviewed_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "sportsbook_reviews"
+    },
+    "fact_checked_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "sportsbook_review"
+    },
+    "trust_signal": {
+      "type": "component",
+      "component": "content.trust-signals",
+      "repeatable": false
+    }
+  }
+}
