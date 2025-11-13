@@ -6,8 +6,14 @@
   "options": {},
   "attributes": {
     "path": {
-      "type": "string"
+      "type": "string",
+      "required": false,
+      "pluginOptions": {
+        "content-manager": {
+          "visible": true,
+          "editable": true
+        }
+      }
     }
-  },
-  "config": {}
+  }
 }

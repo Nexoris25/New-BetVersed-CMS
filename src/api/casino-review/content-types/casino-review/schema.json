@@ -49,11 +49,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "bonus_offer": {
-      "type": "component",
-      "component": "content.bonus-offer",
-      "repeatable": false
-    },
     "ctaButton": {
       "type": "component",
       "component": "shared.cta-button",
@@ -172,6 +167,11 @@
     "trust_signal": {
       "type": "component",
       "component": "content.trust-signals",
+      "repeatable": false
+    },
+    "highlighted_bonus_offer": {
+      "type": "component",
+      "component": "content.highligted-bonus-offer",
       "repeatable": false
     }
   }

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_global_global_ur_ls_and_locale_settings",
+  "info": {
+    "displayName": "Global URLs and Locale Settings"
+  },
+  "options": {},
+  "attributes": {
+    "site_url": {
+      "type": "string"
+    },
+    "default_locale": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en"
+      ]
+    },
+    "countries": {
+      "type": "component",
+      "component": "global.country",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

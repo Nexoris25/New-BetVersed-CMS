@@ -824,7 +824,6 @@ export interface ApiCasinoReviewCasinoReview
       'api::country.country'
     >;
     author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    bonus_offer: Schema.Attribute.Component<'content.bonus-offer', false>;
     casino_bonuses: Schema.Attribute.Relation<
       'manyToMany',
       'api::casino-bonus.casino-bonus'
@@ -845,6 +844,10 @@ export interface ApiCasinoReviewCasinoReview
     fact_checker: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
     gamesOffered: Schema.Attribute.Component<'unit.game-name', true>;
+    highlighted_bonus_offer: Schema.Attribute.Component<
+      'content.highligted-bonus-offer',
+      false
+    >;
     isFeatured: Schema.Attribute.Boolean;
     isRecommended: Schema.Attribute.Boolean;
     last_tested_date: Schema.Attribute.Date;
@@ -1116,7 +1119,7 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
       true
     >;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.Component<'shared.public-url', true>;
+    slug: Schema.Attribute.UID<'countryCode'>;
     sourceReference: Schema.Attribute.Component<
       'content.source-reference',
       true
@@ -1128,6 +1131,7 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    url_path: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -1167,6 +1171,90 @@ export interface ApiEditorialPolicyEditorialPolicy
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'short_title'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
+  info: {
+    displayName: 'Footer';
+    pluralName: 'footers';
+    singularName: 'footer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    columns: Schema.Attribute.Component<'footer.footer-column', true>;
+    copyright_text: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    footer_note: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer.footer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    social_links: Schema.Attribute.Component<'socials.social-links', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
+  collectionName: 'global_settings';
+  info: {
+    displayName: 'Global Setting';
+    pluralName: 'global-settings';
+    singularName: 'global-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    analytics_and_tracking: Schema.Attribute.Component<
+      'global.analytics-and-tracking',
+      false
+    >;
+    brand_information: Schema.Attribute.Component<
+      'global.brand-information',
+      false
+    >;
+    countries: Schema.Attribute.Component<'global.country', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    default_seoMeta: Schema.Attribute.Component<'shared.seo', false>;
+    global_url_and_local_setting: Schema.Attribute.Component<
+      'global.global-ur-ls-and-locale-settings',
+      false
+    >;
+    legal_and_compliance: Schema.Attribute.Component<
+      'global.legal-and-compliance',
+      false
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-setting.global-setting'
+    > &
+      Schema.Attribute.Private;
+    maintenance_mode: Schema.Attribute.Component<
+      'global.maintenance-mode',
+      false
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    social_media_links: Schema.Attribute.Component<
+      'socials.social-links',
+      true
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1265,6 +1353,34 @@ export interface ApiLeagueLeague extends Struct.CollectionTypeSchema {
     season_format: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'name'>;
     sport: Schema.Attribute.Relation<'manyToOne', 'api::sport.sport'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNavigationNavigation extends Struct.SingleTypeSchema {
+  collectionName: 'navigations';
+  info: {
+    displayName: 'Navigation';
+    pluralName: 'navigations';
+    singularName: 'navigation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::navigation.navigation'
+    > &
+      Schema.Attribute.Private;
+    main_navbar: Schema.Attribute.Component<'navigation.navbar-group', false>;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1440,6 +1556,45 @@ export interface ApiOurReviewProcessOurReviewProcess
   };
 }
 
+export interface ApiPageNotFoundPageNotFound extends Struct.SingleTypeSchema {
+  collectionName: 'page_not_founds';
+  info: {
+    displayName: 'Page Not Found';
+    pluralName: 'page-not-founds';
+    singularName: 'page-not-found';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    illustration_image: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-not-found.page-not-found'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seoMeta: Schema.Attribute.Component<'shared.seo', false>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPaymentMethodPaymentMethod
   extends Struct.CollectionTypeSchema {
   collectionName: 'payment_methods';
@@ -1516,6 +1671,39 @@ export interface ApiPrivacyPolicyPrivacyPolicy extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'page_title'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRedirectRedirect extends Struct.CollectionTypeSchema {
+  collectionName: 'redirects';
+  info: {
+    displayName: 'Redirect';
+    pluralName: 'redirects';
+    singularName: 'redirect';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::redirect.redirect'
+    > &
+      Schema.Attribute.Private;
+    new_url: Schema.Attribute.String;
+    old_url: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    redirect_type: Schema.Attribute.Enumeration<
+      ['Permanent (301)', 'Temporary (302)']
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1718,7 +1906,6 @@ export interface ApiSportsbookReviewSportsbookReview
       'manyToMany',
       'api::operator-country.operator-country'
     >;
-    bonus_offer: Schema.Attribute.Component<'content.bonus-offer', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1728,6 +1915,10 @@ export interface ApiSportsbookReviewSportsbookReview
       'api::author.author'
     >;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
+    highlighted_bonus_offer: Schema.Attribute.Component<
+      'content.highligted-bonus-offer',
+      false
+    >;
     isFeatured: Schema.Attribute.Boolean;
     isRecommended: Schema.Attribute.Boolean;
     last_tested_date: Schema.Attribute.Date;
@@ -2347,13 +2538,18 @@ declare module '@strapi/strapi' {
       'api::cookie-policy.cookie-policy': ApiCookiePolicyCookiePolicy;
       'api::country.country': ApiCountryCountry;
       'api::editorial-policy.editorial-policy': ApiEditorialPolicyEditorialPolicy;
+      'api::footer.footer': ApiFooterFooter;
+      'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::home.home': ApiHomeHome;
       'api::league.league': ApiLeagueLeague;
+      'api::navigation.navigation': ApiNavigationNavigation;
       'api::operator-country.operator-country': ApiOperatorCountryOperatorCountry;
       'api::operator.operator': ApiOperatorOperator;
       'api::our-review-process.our-review-process': ApiOurReviewProcessOurReviewProcess;
+      'api::page-not-found.page-not-found': ApiPageNotFoundPageNotFound;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
+      'api::redirect.redirect': ApiRedirectRedirect;
       'api::responsible-gambling.responsible-gambling': ApiResponsibleGamblingResponsibleGambling;
       'api::sport.sport': ApiSportSport;
       'api::sportsbook-bonus.sportsbook-bonus': ApiSportsbookBonusSportsbookBonus;

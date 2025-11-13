@@ -41,10 +41,10 @@
         "preset": "defaultHtml"
       }
     },
-    "slug": {
+    "url_path": {
       "type": "component",
       "component": "shared.public-url",
-      "repeatable": true
+      "repeatable": false
     },
     "seoMeta": {
       "type": "component",
@@ -89,6 +89,10 @@
       "relation": "oneToMany",
       "target": "api::sportsbook-bonus.sportsbook-bonus",
       "mappedBy": "country"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "countryCode"
     }
   }
 }

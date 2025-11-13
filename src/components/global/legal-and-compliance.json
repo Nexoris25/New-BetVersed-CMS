@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_global_legal_and_compliances",
+  "info": {
+    "displayName": "Legal & Compliance"
+  },
+  "options": {},
+  "attributes": {
+    "privacy_policy_url": {
+      "type": "string"
+    },
+    "terms_of_use_url": {
+      "type": "string"
+    },
+    "responsible_gambling_url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "Global Setting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "brand_information": {
+      "type": "component",
+      "component": "global.brand-information",
+      "repeatable": false
+    },
+    "global_url_and_local_setting": {
+      "type": "component",
+      "component": "global.global-ur-ls-and-locale-settings",
+      "repeatable": false
+    },
+    "countries": {
+      "type": "component",
+      "component": "global.country",
+      "repeatable": false
+    },
+    "social_media_links": {
+      "type": "component",
+      "component": "socials.social-links",
+      "repeatable": true
+    },
+    "default_seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "analytics_and_tracking": {
+      "type": "component",
+      "component": "global.analytics-and-tracking",
+      "repeatable": false
+    },
+    "legal_and_compliance": {
+      "type": "component",
+      "component": "global.legal-and-compliance",
+      "repeatable": false
+    },
+    "maintenance_mode": {
+      "type": "component",
+      "component": "global.maintenance-mode",
+      "repeatable": false
+    }
+  }
+}

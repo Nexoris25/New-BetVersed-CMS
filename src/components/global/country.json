@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_global_countries",
+  "info": {
+    "displayName": "Country"
+  },
+  "options": {},
+  "attributes": {
+    "country_name": {
+      "type": "string"
+    },
+    "country_code": {
+      "type": "string"
+    },
+    "slug_prefix": {
+      "type": "string"
+    },
+    "country_locale": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

@@ -152,6 +152,167 @@ export interface ContentTrustSignals extends Struct.ComponentSchema {
   };
 }
 
+export interface FooterFooterColumn extends Struct.ComponentSchema {
+  collectionName: 'components_footer_footer_columns';
+  info: {
+    displayName: 'Footer Column';
+  };
+  attributes: {
+    links: Schema.Attribute.Component<'footer.footer-link', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface FooterFooterLink extends Struct.ComponentSchema {
+  collectionName: 'components_footer_footer_links';
+  info: {
+    displayName: 'Footer Link';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface GlobalAnalyticsAndTracking extends Struct.ComponentSchema {
+  collectionName: 'components_global_analytics_and_trackings';
+  info: {
+    displayName: 'Analytics & Tracking';
+  };
+  attributes: {
+    platform: Schema.Attribute.Component<'unit.label-and-value', true>;
+  };
+}
+
+export interface GlobalBrandInformation extends Struct.ComponentSchema {
+  collectionName: 'components_global_brand_informations';
+  info: {
+    displayName: 'Brand Information';
+  };
+  attributes: {
+    favicon: Schema.Attribute.Media<'images' | 'files'>;
+    primary_color: Schema.Attribute.String;
+    secondary_color: Schema.Attribute.String;
+    site_logo: Schema.Attribute.Media<'images' | 'files'>;
+    site_name: Schema.Attribute.String;
+  };
+}
+
+export interface GlobalContactInformation extends Struct.ComponentSchema {
+  collectionName: 'components_global_contact_informations';
+  info: {
+    displayName: 'Contact Information';
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    phone_number: Schema.Attribute.String;
+  };
+}
+
+export interface GlobalCountry extends Struct.ComponentSchema {
+  collectionName: 'components_global_countries';
+  info: {
+    displayName: 'Country';
+  };
+  attributes: {
+    country_code: Schema.Attribute.String;
+    country_locale: Schema.Attribute.String;
+    country_name: Schema.Attribute.String;
+    is_active: Schema.Attribute.Boolean;
+    slug_prefix: Schema.Attribute.String;
+  };
+}
+
+export interface GlobalGlobalUrLsAndLocaleSettings
+  extends Struct.ComponentSchema {
+  collectionName: 'components_global_global_ur_ls_and_locale_settings';
+  info: {
+    displayName: 'Global URLs and Locale Settings';
+  };
+  attributes: {
+    countries: Schema.Attribute.Component<'global.country', true>;
+    default_locale: Schema.Attribute.Enumeration<['en']> &
+      Schema.Attribute.DefaultTo<'en'>;
+    site_url: Schema.Attribute.String;
+  };
+}
+
+export interface GlobalLegalAndCompliance extends Struct.ComponentSchema {
+  collectionName: 'components_global_legal_and_compliances';
+  info: {
+    displayName: 'Legal & Compliance';
+  };
+  attributes: {
+    privacy_policy_url: Schema.Attribute.String;
+    responsible_gambling_url: Schema.Attribute.String;
+    terms_of_use_url: Schema.Attribute.String;
+  };
+}
+
+export interface GlobalMaintenanceMode extends Struct.ComponentSchema {
+  collectionName: 'components_global_maintenance_modes';
+  info: {
+    displayName: 'Maintenance Mode';
+  };
+  attributes: {
+    is_maintenance_mode: Schema.Attribute.Boolean;
+    maintenance_message: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+  };
+}
+
+export interface NavigationNavbarDropdown extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_navbar_dropdowns';
+  info: {
+    displayName: 'Navbar Dropdown';
+  };
+  attributes: {
+    links: Schema.Attribute.Component<'navigation.navbar-link', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface NavigationNavbarGroup extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_navbar_groups';
+  info: {
+    displayName: 'Navbar Group';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'navigation.navbar-item', true>;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface NavigationNavbarItem extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_navbar_items';
+  info: {
+    displayName: 'Navbar Item';
+  };
+  attributes: {
+    dropdown: Schema.Attribute.Component<'navigation.navbar-dropdown', false>;
+    label: Schema.Attribute.String;
+    link: Schema.Attribute.Component<'navigation.navbar-link', false>;
+    type: Schema.Attribute.Enumeration<['link', 'dropdown']>;
+  };
+}
+
+export interface NavigationNavbarLink extends Struct.ComponentSchema {
+  collectionName: 'components_navigation_navbar_links';
+  info: {
+    displayName: 'Navbar Link';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface SharedContactForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_contact_forms';
   info: {
@@ -241,7 +402,13 @@ export interface SharedPublicUrl extends Struct.ComponentSchema {
     displayName: 'Public URL';
   };
   attributes: {
-    path: Schema.Attribute.String;
+    path: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        'content-manager': {
+          editable: true;
+          visible: true;
+        };
+      }>;
   };
 }
 
@@ -354,6 +521,19 @@ declare module '@strapi/strapi' {
       'content.rich-text': ContentRichText;
       'content.source-reference': ContentSourceReference;
       'content.trust-signals': ContentTrustSignals;
+      'footer.footer-column': FooterFooterColumn;
+      'footer.footer-link': FooterFooterLink;
+      'global.analytics-and-tracking': GlobalAnalyticsAndTracking;
+      'global.brand-information': GlobalBrandInformation;
+      'global.contact-information': GlobalContactInformation;
+      'global.country': GlobalCountry;
+      'global.global-ur-ls-and-locale-settings': GlobalGlobalUrLsAndLocaleSettings;
+      'global.legal-and-compliance': GlobalLegalAndCompliance;
+      'global.maintenance-mode': GlobalMaintenanceMode;
+      'navigation.navbar-dropdown': NavigationNavbarDropdown;
+      'navigation.navbar-group': NavigationNavbarGroup;
+      'navigation.navbar-item': NavigationNavbarItem;
+      'navigation.navbar-link': NavigationNavbarLink;
       'shared.contact-form': SharedContactForm;
       'shared.cta-button': SharedCtaButton;
       'shared.fa-qs-section': SharedFaQsSection;

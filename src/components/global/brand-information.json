@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_global_brand_informations",
+  "info": {
+    "displayName": "Brand Information"
+  },
+  "options": {},
+  "attributes": {
+    "site_name": {
+      "type": "string"
+    },
+    "site_logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "primary_color": {
+      "type": "string"
+    },
+    "secondary_color": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

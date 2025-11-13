@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_global_analytics_and_trackings",
+  "info": {
+    "displayName": "Analytics & Tracking"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "component",
+      "component": "unit.label-and-value",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

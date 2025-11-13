@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_navigation_navbar_groups",
+  "info": {
+    "displayName": "Navbar Group"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "component": "navigation.navbar-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

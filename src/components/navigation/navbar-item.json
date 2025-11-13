@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_navigation_navbar_items",
+  "info": {
+    "displayName": "Navbar Item"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "link",
+        "dropdown"
+      ]
+    },
+    "link": {
+      "type": "component",
+      "component": "navigation.navbar-link",
+      "repeatable": false
+    },
+    "dropdown": {
+      "type": "component",
+      "component": "navigation.navbar-dropdown",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
