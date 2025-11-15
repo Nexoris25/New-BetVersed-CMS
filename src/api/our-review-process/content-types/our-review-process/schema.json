@@ -17,15 +17,6 @@
     "short_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "short_title"
-    },
-    "url_path": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -56,10 +47,15 @@
     "lastUpdated": {
       "type": "date"
     },
-    "author": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::author.author"
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
+    },
+    "seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
     }
   }
 }

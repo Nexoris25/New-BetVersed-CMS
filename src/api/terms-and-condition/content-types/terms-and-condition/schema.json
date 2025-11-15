@@ -14,10 +14,6 @@
     "page_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "page_title"
-    },
     "lastUpdated": {
       "type": "date"
     },
@@ -40,6 +36,11 @@
       "options": {
         "preset": "defaultHtml"
       }
+    },
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
     }
   }
 }

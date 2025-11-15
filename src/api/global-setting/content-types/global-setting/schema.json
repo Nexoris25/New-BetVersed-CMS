@@ -21,11 +21,6 @@
       "component": "global.global-ur-ls-and-locale-settings",
       "repeatable": false
     },
-    "countries": {
-      "type": "component",
-      "component": "global.country",
-      "repeatable": false
-    },
     "social_media_links": {
       "type": "component",
       "component": "socials.social-links",
@@ -50,6 +45,28 @@
       "type": "component",
       "component": "global.maintenance-mode",
       "repeatable": false
+    },
+    "affiliateDisclosure": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "responsibleGamblingMessage": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "ageWarning": {
+      "type": "string"
+    },
+    "supportOrganizations": {
+      "type": "component",
+      "component": "unit.responsible-gambling",
+      "repeatable": true
     }
   }
 }

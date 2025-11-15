@@ -14,21 +14,10 @@
     "page_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "page_title"
-    },
     "hero_section": {
       "type": "component",
       "component": "content.hero-section",
       "repeatable": false
-    },
-    "lead_paragraph": {
-      "type": "customField",
-      "customField": "plugin::ckeditor5.CKEditor",
-      "options": {
-        "preset": "defaultHtml"
-      }
     },
     "featured_sportsbooks": {
       "type": "relation",
@@ -71,6 +60,11 @@
       "type": "component",
       "component": "unit.responsible-gambling",
       "repeatable": true
+    },
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
     }
   }
 }

@@ -17,10 +17,6 @@
     "short_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "short_title"
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -50,6 +46,11 @@
       "type": "component",
       "component": "socials.social-links",
       "repeatable": true
+    },
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
     }
   }
 }

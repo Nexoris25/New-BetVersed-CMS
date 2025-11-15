@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_sportsbook_sportsbook_bonus_types",
+  "info": {
+    "displayName": "Sportsbook Bonus Types"
+  },
+  "options": {},
+  "attributes": {
+    "hasWelcomeBonus": {
+      "type": "boolean"
+    },
+    "hasFreeBetBonus": {
+      "type": "boolean"
+    },
+    "hasBetAndGetBonus": {
+      "type": "boolean"
+    },
+    "hasCashbackBonus": {
+      "type": "boolean"
+    },
+    "hasReloadBonus": {
+      "type": "boolean"
+    },
+    "hasAccaBonus": {
+      "type": "boolean"
+    },
+    "hasLoyaltyProgram": {
+      "type": "boolean"
+    },
+    "hasVIPRewards": {
+      "type": "boolean"
+    },
+    "hasOddsBoost": {
+      "type": "boolean"
+    },
+    "hasMobileExclusiveOffers": {
+      "type": "boolean"
+    },
+    "hasReferralBonus": {
+      "type": "boolean"
+    },
+    "hasBirthdayBonus": {
+      "type": "boolean"
+    },
+    "hasLosingStreakBonus": {
+      "type": "boolean"
+    },
+    "hasEarlyPayoutBonus": {
+      "type": "boolean"
+    },
+    "hasCashOutFeatureBonus": {
+      "type": "boolean"
+    },
+    "hasInsuranceBonus": {
+      "type": "boolean"
+    },
+    "hasJackpotBonus": {
+      "type": "boolean"
+    },
+    "hasSeasonalSportBonus": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

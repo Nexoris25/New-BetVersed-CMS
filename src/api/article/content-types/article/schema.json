@@ -17,10 +17,6 @@
     "short_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "article_title"
-    },
     "url_path": {
       "type": "component",
       "component": "shared.public-url",
@@ -60,47 +56,35 @@
       "component": "content.source-reference",
       "repeatable": true
     },
-    "category": {
+    "post_category": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "articles"
     },
-    "written_by": {
+    "writtenBy": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "articles"
     },
-    "fact_checked_by": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "article"
-    },
     "articles": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
-      "inversedBy": "related_articles"
+      "inversedBy": "relatedArticles"
     },
-    "related_articles": {
+    "relatedArticles": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::article.article",
       "mappedBy": "articles"
     },
-    "article": {
+    "fact_checked_by": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::article.article",
-      "inversedBy": "suggested_reading"
-    },
-    "suggested_reading": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::article.article",
-      "mappedBy": "article"
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "factCheckedArticles"
     }
   }
 }

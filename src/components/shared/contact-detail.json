@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_contact_details",
+  "info": {
+    "displayName": "contact_detail"
+  },
+  "options": {},
+  "attributes": {
+    "contact_channel": {
+      "type": "component",
+      "component": "unit.label-and-value",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

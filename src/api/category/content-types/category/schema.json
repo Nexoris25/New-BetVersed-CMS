@@ -17,10 +17,6 @@
     "short_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "short_title"
-    },
     "lead_paragraph": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
@@ -45,7 +41,12 @@
       "component": "shared.fa-qs-section",
       "repeatable": false
     },
-    "sub_categories": {
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
+    },
+    "categories": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::category.category",
@@ -55,31 +56,13 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
-      "inversedBy": "sub_categories"
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "related_categories"
-    },
-    "related_categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "mappedBy": "categories"
-    },
-    "fact_checked_by": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "categorie"
+      "inversedBy": "categories"
     },
     "articles": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article.article",
-      "mappedBy": "category"
+      "mappedBy": "post_category"
     }
   }
 }

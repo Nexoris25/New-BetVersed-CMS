@@ -33,6 +33,21 @@
         "index, nofollow",
         "noindex, nofollow"
       ]
+    },
+    "og_title": {
+      "type": "string"
+    },
+    "og_description": {
+      "type": "text",
+      "maxLength": 160
+    },
+    "og_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     }
   },
   "config": {}

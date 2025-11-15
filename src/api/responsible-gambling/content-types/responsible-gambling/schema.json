@@ -14,10 +14,6 @@
     "page_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "page_title"
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -53,6 +49,11 @@
     "faqs": {
       "type": "component",
       "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
       "repeatable": false
     }
   }

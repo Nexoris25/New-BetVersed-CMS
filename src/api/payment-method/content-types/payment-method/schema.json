@@ -50,13 +50,16 @@
     "min_deposit": {
       "type": "string"
     },
-    "max_withdrawal": {
+    "max_payout": {
       "type": "string"
     },
-    "casino_reviews": {
+    "crypto_payments_supported": {
+      "type": "boolean"
+    },
+    "operator_countries": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::casino-review.casino-review",
+      "target": "api::operator-country.operator-country",
       "mappedBy": "payment_methods"
     }
   }

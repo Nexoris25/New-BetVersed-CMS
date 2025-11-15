@@ -11,62 +11,35 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "operatorLegalName": {
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "operator_countries"
+    },
+    "operating_company": {
       "type": "string"
     },
-    "isLicensed": {
-      "type": "boolean"
-    },
-    "isVerified": {
-      "type": "boolean"
-    },
-    "licenseInfo": {
+    "license_detail": {
       "type": "component",
-      "component": "shared.licence-detail",
+      "component": "shared.license-detail",
       "repeatable": true
     },
-    "website": {
-      "type": "string"
-    },
-    "hasMobileApp": {
-      "type": "boolean"
-    },
-    "paymentMethods": {
+    "local_support": {
       "type": "component",
-      "component": "content.payment-method",
-      "repeatable": true
+      "component": "shared.contact-detail",
+      "repeatable": false
     },
-    "supportChannels": {
-      "type": "component",
-      "component": "unit.label-and-value",
-      "repeatable": true
-    },
-    "last_tested_date": {
-      "type": "date"
-    },
-    "additionalNotes": {
-      "type": "customField",
-      "customField": "plugin::ckeditor5.CKEditor",
-      "options": {
-        "preset": "defaultHtml"
-      }
-    },
-    "casino_reviews": {
+    "operator_brand": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::casino-review.casino-review",
-      "mappedBy": "operator_countries"
+      "relation": "manyToOne",
+      "target": "api::operator-brand.operator-brand",
+      "inversedBy": "operator_countries"
     },
-    "casino_review": {
+    "sportsbook_reviews": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::casino-review.casino-review",
-      "mappedBy": "operator_country"
-    },
-    "casino_bonuses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::casino-bonus.casino-bonus",
+      "target": "api::sportsbook-review.sportsbook-review",
       "mappedBy": "operator_country"
     },
     "sportsbook_bonuses": {
@@ -75,17 +48,46 @@
       "target": "api::sportsbook-bonus.sportsbook-bonus",
       "mappedBy": "operator_country"
     },
-    "sportsbook_bonuseses": {
+    "casino_bonuses": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sportsbook-bonus.sportsbook-bonus",
-      "inversedBy": "alternative_operators"
+      "relation": "oneToMany",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "operator_country"
     },
-    "sportsbook_reviews": {
+    "casino_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "operator_country"
+    },
+    "operator_local_name": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "operator_country_features": {
+      "type": "component",
+      "component": "operator-country.operator-country-features",
+      "repeatable": false
+    },
+    "entry_year": {
+      "type": "string"
+    },
+    "operator_country_cta": {
+      "type": "component",
+      "component": "shared.cta-button",
+      "repeatable": true
+    },
+    "payment_methods": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::sportsbook-review.sportsbook-review",
-      "inversedBy": "alternative_operators"
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "operator_countries"
     }
   }
 }

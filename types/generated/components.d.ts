@@ -1,5 +1,54 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface CasinoCasinoBonusTypes extends Struct.ComponentSchema {
+  collectionName: 'components_casino_casino_bonus_types';
+  info: {
+    displayName: 'Casino Bonus Types';
+  };
+  attributes: {
+    hasBirthdayBonus: Schema.Attribute.Boolean;
+    hasCashbackBonus: Schema.Attribute.Boolean;
+    hasCashRaceBonus: Schema.Attribute.Boolean;
+    hasCryptoBonus: Schema.Attribute.Boolean;
+    hasDepositMatchBonus: Schema.Attribute.Boolean;
+    hasDropsAndWins: Schema.Attribute.Boolean;
+    hasFreeSpinsBonus: Schema.Attribute.Boolean;
+    hasGameProviderBonus: Schema.Attribute.Boolean;
+    hasHighRollerBonus: Schema.Attribute.Boolean;
+    hasLiveCasinoBonus: Schema.Attribute.Boolean;
+    hasLossRebateBonus: Schema.Attribute.Boolean;
+    hasLoyaltyProgram: Schema.Attribute.Boolean;
+    hasMobileExclusiveOffers: Schema.Attribute.Boolean;
+    hasMysteryBonus: Schema.Attribute.Boolean;
+    hasNoDepositBonus: Schema.Attribute.Boolean;
+    hasReferralBonus: Schema.Attribute.Boolean;
+    hasReloadBonus: Schema.Attribute.Boolean;
+    hasSlotTournaments: Schema.Attribute.Boolean;
+    hasVIPRewards: Schema.Attribute.Boolean;
+    hasWeeklyFreeSpins: Schema.Attribute.Boolean;
+    hasWelcomeBonus: Schema.Attribute.Boolean;
+    hasWheelOfFortuneBonus: Schema.Attribute.Boolean;
+  };
+}
+
+export interface CasinoCasinoFeatures extends Struct.ComponentSchema {
+  collectionName: 'components_casino_casino_features';
+  info: {
+    displayName: 'Casino Features';
+  };
+  attributes: {
+    bingo_available: Schema.Attribute.Boolean;
+    jackpot_games_available: Schema.Attribute.Boolean;
+    live_casino_available: Schema.Attribute.Boolean;
+    lottery_available: Schema.Attribute.Boolean;
+    provably_fair_games_available: Schema.Attribute.Boolean;
+    slots_available: Schema.Attribute.Boolean;
+    table_games_available: Schema.Attribute.Boolean;
+    vip_program_available: Schema.Attribute.Boolean;
+    virtual_games_available: Schema.Attribute.Boolean;
+  };
+}
+
 export interface ContentBonusOffer extends Struct.ComponentSchema {
   collectionName: 'components_content_bonus_offers';
   info: {
@@ -30,6 +79,13 @@ export interface ContentHeroSection extends Struct.ComponentSchema {
     hero_image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     >;
+    lead_paragraph: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     sub_title: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
@@ -64,6 +120,7 @@ export interface ContentPaymentMethod extends Struct.ComponentSchema {
   attributes: {
     logo: Schema.Attribute.Media<'images' | 'files'>;
     name: Schema.Attribute.String;
+    processing_time: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<
       [
         'deposit',
@@ -121,6 +178,17 @@ export interface ContentSourceReference extends Struct.ComponentSchema {
     accessed_date: Schema.Attribute.Date;
     source_title: Schema.Attribute.String;
     source_url: Schema.Attribute.String;
+  };
+}
+
+export interface ContentSupportedPaymentMethods extends Struct.ComponentSchema {
+  collectionName: 'components_content_supported_payment_methods';
+  info: {
+    displayName: 'supported_payment_methods';
+  };
+  attributes: {
+    payment_methods_title: Schema.Attribute.String;
+    payment_options: Schema.Attribute.Component<'content.payment-method', true>;
   };
 }
 
@@ -231,7 +299,6 @@ export interface GlobalGlobalUrLsAndLocaleSettings
     displayName: 'Global URLs and Locale Settings';
   };
   attributes: {
-    countries: Schema.Attribute.Component<'global.country', true>;
     default_locale: Schema.Attribute.Enumeration<['en']> &
       Schema.Attribute.DefaultTo<'en'>;
     site_url: Schema.Attribute.String;
@@ -313,6 +380,34 @@ export interface NavigationNavbarLink extends Struct.ComponentSchema {
   };
 }
 
+export interface OperatorCountryOperatorCountryFeatures
+  extends Struct.ComponentSchema {
+  collectionName: 'components_operator_country_operator_country_features';
+  info: {
+    displayName: 'Operator Country Features';
+  };
+  attributes: {
+    android_app_available: Schema.Attribute.Boolean;
+    casino_available: Schema.Attribute.Boolean;
+    huawei_app_available: Schema.Attribute.Boolean;
+    ios_app_available: Schema.Attribute.Boolean;
+    lotto_available: Schema.Attribute.Boolean;
+    responsible_gambling_tools: Schema.Attribute.Boolean;
+    sportsbook_available: Schema.Attribute.Boolean;
+    windows_app_available: Schema.Attribute.Boolean;
+  };
+}
+
+export interface SharedContactDetail extends Struct.ComponentSchema {
+  collectionName: 'components_shared_contact_details';
+  info: {
+    displayName: 'contact_detail';
+  };
+  attributes: {
+    contact_channel: Schema.Attribute.Component<'unit.label-and-value', true>;
+  };
+}
+
 export interface SharedContactForm extends Struct.ComponentSchema {
   collectionName: 'components_shared_contact_forms';
   info: {
@@ -373,15 +468,21 @@ export interface SharedFaqsItem extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedLicenceDetail extends Struct.ComponentSchema {
-  collectionName: 'components_shared_licence_details';
+export interface SharedLicenseDetail extends Struct.ComponentSchema {
+  collectionName: 'components_shared_license_details';
   info: {
-    displayName: 'Licence Detail';
+    displayName: 'License Detail';
   };
   attributes: {
-    licenseNumber: Schema.Attribute.String;
-    licensingAuthority: Schema.Attribute.String;
-    website_url: Schema.Attribute.String;
+    license_type: Schema.Attribute.Enumeration<
+      ['Local License', 'Foreign License']
+    >;
+    license_type_and_number: Schema.Attribute.Component<
+      'unit.label-and-value',
+      false
+    >;
+    regulator: Schema.Attribute.String;
+    regulator_website: Schema.Attribute.String;
   };
 }
 
@@ -402,13 +503,14 @@ export interface SharedPublicUrl extends Struct.ComponentSchema {
     displayName: 'Public URL';
   };
   attributes: {
-    path: Schema.Attribute.String &
+    full_url_path: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         'content-manager': {
           editable: true;
           visible: true;
         };
       }>;
+    slug: Schema.Attribute.String;
   };
 }
 
@@ -429,6 +531,12 @@ export interface SharedSeo extends Struct.ComponentSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 60;
       }>;
+    og_description: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+      }>;
+    og_image: Schema.Attribute.Media<'images' | 'files'>;
+    og_title: Schema.Attribute.String;
     robotsDirectives: Schema.Attribute.Enumeration<
       [
         'index, follow',
@@ -451,6 +559,50 @@ export interface SocialsSocialLinks extends Struct.ComponentSchema {
     Icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     Platform: Schema.Attribute.String;
     URL: Schema.Attribute.String;
+  };
+}
+
+export interface SportsbookSportsbookBonusTypes extends Struct.ComponentSchema {
+  collectionName: 'components_sportsbook_sportsbook_bonus_types';
+  info: {
+    displayName: 'Sportsbook Bonus Types';
+  };
+  attributes: {
+    hasAccaBonus: Schema.Attribute.Boolean;
+    hasBetAndGetBonus: Schema.Attribute.Boolean;
+    hasBirthdayBonus: Schema.Attribute.Boolean;
+    hasCashbackBonus: Schema.Attribute.Boolean;
+    hasCashOutFeatureBonus: Schema.Attribute.Boolean;
+    hasEarlyPayoutBonus: Schema.Attribute.Boolean;
+    hasFreeBetBonus: Schema.Attribute.Boolean;
+    hasInsuranceBonus: Schema.Attribute.Boolean;
+    hasJackpotBonus: Schema.Attribute.Boolean;
+    hasLosingStreakBonus: Schema.Attribute.Boolean;
+    hasLoyaltyProgram: Schema.Attribute.Boolean;
+    hasMobileExclusiveOffers: Schema.Attribute.Boolean;
+    hasOddsBoost: Schema.Attribute.Boolean;
+    hasReferralBonus: Schema.Attribute.Boolean;
+    hasReloadBonus: Schema.Attribute.Boolean;
+    hasSeasonalSportBonus: Schema.Attribute.Boolean;
+    hasVIPRewards: Schema.Attribute.Boolean;
+    hasWelcomeBonus: Schema.Attribute.Boolean;
+  };
+}
+
+export interface SportsbookSportsbookFeatures extends Struct.ComponentSchema {
+  collectionName: 'components_sportsbook_sportsbook_features';
+  info: {
+    displayName: 'Sportsbook Features';
+  };
+  attributes: {
+    acca_insurance_available: Schema.Attribute.Boolean;
+    bet_builder_available: Schema.Attribute.Boolean;
+    boosted_odds_available: Schema.Attribute.Boolean;
+    cashout_available: Schema.Attribute.Boolean;
+    is_1up_available: Schema.Attribute.Boolean;
+    is2up_available: Schema.Attribute.Boolean;
+    live_betting_available: Schema.Attribute.Boolean;
+    live_streaming_available: Schema.Attribute.Boolean;
   };
 }
 
@@ -513,6 +665,8 @@ export interface UnitResponsibleGambling extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'casino.casino-bonus-types': CasinoCasinoBonusTypes;
+      'casino.casino-features': CasinoCasinoFeatures;
       'content.bonus-offer': ContentBonusOffer;
       'content.hero-section': ContentHeroSection;
       'content.highligted-bonus-offer': ContentHighligtedBonusOffer;
@@ -520,6 +674,7 @@ declare module '@strapi/strapi' {
       'content.review-summary': ContentReviewSummary;
       'content.rich-text': ContentRichText;
       'content.source-reference': ContentSourceReference;
+      'content.supported-payment-methods': ContentSupportedPaymentMethods;
       'content.trust-signals': ContentTrustSignals;
       'footer.footer-column': FooterFooterColumn;
       'footer.footer-link': FooterFooterLink;
@@ -534,15 +689,19 @@ declare module '@strapi/strapi' {
       'navigation.navbar-group': NavigationNavbarGroup;
       'navigation.navbar-item': NavigationNavbarItem;
       'navigation.navbar-link': NavigationNavbarLink;
+      'operator-country.operator-country-features': OperatorCountryOperatorCountryFeatures;
+      'shared.contact-detail': SharedContactDetail;
       'shared.contact-form': SharedContactForm;
       'shared.cta-button': SharedCtaButton;
       'shared.fa-qs-section': SharedFaQsSection;
       'shared.faqs-item': SharedFaqsItem;
-      'shared.licence-detail': SharedLicenceDetail;
+      'shared.license-detail': SharedLicenseDetail;
       'shared.pros-cons': SharedProsCons;
       'shared.public-url': SharedPublicUrl;
       'shared.seo': SharedSeo;
       'socials.social-links': SocialsSocialLinks;
+      'sportsbook.sportsbook-bonus-types': SportsbookSportsbookBonusTypes;
+      'sportsbook.sportsbook-features': SportsbookSportsbookFeatures;
       'unit.currencies-supported': UnitCurrenciesSupported;
       'unit.game-name': UnitGameName;
       'unit.label': UnitLabel;

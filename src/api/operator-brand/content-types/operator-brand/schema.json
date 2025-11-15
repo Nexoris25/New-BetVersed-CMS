@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "operator_brands",
+  "info": {
+    "singularName": "operator-brand",
+    "pluralName": "operator-brands",
+    "displayName": "Operator Brand"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "headquarters": {
+      "type": "string"
+    },
+    "year_founded": {
+      "type": "string"
+    },
+    "parent_company": {
+      "type": "string"
+    },
+    "is_licensed": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "website_url": {
+      "type": "string"
+    },
+    "operator_countries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "operator_brand"
+    },
+    "sportsbook_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "mappedBy": "operator_brand"
+    },
+    "casino_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "operator_brand"
+    },
+    "sportsbook_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "mappedBy": "operator_brand"
+    },
+    "casino_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "operator_brand"
+    },
+    "countries_available": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::country.country",
+      "mappedBy": "operator_brands"
+    }
+  }
+}

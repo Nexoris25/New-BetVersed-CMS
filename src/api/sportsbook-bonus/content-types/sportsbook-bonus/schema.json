@@ -17,11 +17,7 @@
     "short_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "short_title"
-    },
-    "url_path": {
+    "public_url": {
       "type": "component",
       "component": "shared.public-url",
       "repeatable": false
@@ -89,17 +85,22 @@
       "component": "content.source-reference",
       "repeatable": false
     },
-    "operator_country": {
+    "operator_brand": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::operator-country.operator-country",
+      "target": "api::operator-brand.operator-brand",
       "inversedBy": "sportsbook_bonuses"
     },
-    "country": {
+    "related_casino_review": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::country.country",
-      "inversedBy": "sportsbook_bonuses"
+      "relation": "oneToOne",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "sportsbook_bonus"
+    },
+    "related_casino_bonus_review": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::casino-bonus.casino-bonus"
     },
     "reviewed_by": {
       "type": "relation",
@@ -107,40 +108,34 @@
       "target": "api::author.author",
       "inversedBy": "sportsbook_bonuses"
     },
-    "fact_checked_by": {
+    "sportsbook_review": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "sportsbook_bonuseses"
-    },
-    "related_sportsbook": {
-      "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToOne",
       "target": "api::sportsbook-review.sportsbook-review",
       "inversedBy": "related_sportsbook_bonus"
     },
-    "related_casino": {
+    "review_country": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::casino-review.casino-review",
-      "mappedBy": "sportsbook_bonuses"
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "sportsbook_bonuses"
     },
-    "related_casino_bonus": {
+    "operator_country": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
+      "target": "api::operator-country.operator-country",
+      "inversedBy": "sportsbook_bonuses"
+    },
+    "sportsbook_bonus_types": {
+      "type": "component",
+      "component": "sportsbook.sportsbook-bonus-types",
+      "repeatable": false
+    },
+    "casino_bonus": {
+      "type": "relation",
+      "relation": "oneToOne",
       "target": "api::casino-bonus.casino-bonus",
       "mappedBy": "sportsbook_bonus"
-    },
-    "alternative_operators": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::operator-country.operator-country",
-      "mappedBy": "sportsbook_bonuseses"
-    },
-    "trust_signal": {
-      "type": "component",
-      "component": "content.trust-signals",
-      "repeatable": false
     }
   }
 }

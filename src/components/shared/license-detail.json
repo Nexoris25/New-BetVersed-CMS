@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_shared_license_details",
+  "info": {
+    "displayName": "License Detail"
+  },
+  "options": {},
+  "attributes": {
+    "regulator": {
+      "type": "string"
+    },
+    "license_type": {
+      "type": "enumeration",
+      "enum": [
+        "Local License",
+        "Foreign License"
+      ]
+    },
+    "license_type_and_number": {
+      "type": "component",
+      "component": "unit.label-and-value",
+      "repeatable": false
+    },
+    "regulator_website": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

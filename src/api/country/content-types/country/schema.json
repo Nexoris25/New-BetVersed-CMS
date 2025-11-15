@@ -41,11 +41,6 @@
         "preset": "defaultHtml"
       }
     },
-    "url_path": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
-    },
     "seoMeta": {
       "type": "component",
       "component": "shared.seo",
@@ -66,33 +61,46 @@
       "component": "unit.responsible-gambling",
       "repeatable": true
     },
-    "casino_reviews": {
+    "operator_brands": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::casino-review.casino-review",
-      "mappedBy": "alternative_operators"
+      "target": "api::operator-brand.operator-brand",
+      "inversedBy": "countries_available"
     },
-    "online_casino_review": {
+    "sportsbook_reviews": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::casino-review.casino-review",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "mappedBy": "review_country"
+    },
+    "sportsbook_bonuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "mappedBy": "review_country"
+    },
+    "operator_countries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::operator-country.operator-country",
       "mappedBy": "country"
     },
     "casino_bonuses": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::casino-bonus.casino-bonus",
-      "mappedBy": "country"
+      "mappedBy": "review_country"
     },
-    "sportsbook_bonuses": {
+    "casino_reviews": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "target": "api::casino-review.casino-review",
       "mappedBy": "country"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "countryCode"
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
     }
   }
 }

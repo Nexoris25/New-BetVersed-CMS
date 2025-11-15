@@ -14,11 +14,6 @@
       "enum": [
         "en"
       ]
-    },
-    "countries": {
-      "type": "component",
-      "component": "global.country",
-      "repeatable": true
     }
   },
   "config": {}

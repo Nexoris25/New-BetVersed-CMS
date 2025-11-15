@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_content_supported_payment_methods",
+  "info": {
+    "displayName": "supported_payment_methods"
+  },
+  "options": {},
+  "attributes": {
+    "payment_methods_title": {
+      "type": "string"
+    },
+    "payment_options": {
+      "type": "component",
+      "component": "content.payment-method",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

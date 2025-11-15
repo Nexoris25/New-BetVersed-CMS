@@ -28,6 +28,9 @@
         "crypto",
         "voucher"
       ]
+    },
+    "processing_time": {
+      "type": "string"
     }
   },
   "config": {}

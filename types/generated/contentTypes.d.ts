@@ -444,7 +444,6 @@ export interface ApiAboutUsAboutUs extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
     featured_image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -460,10 +459,10 @@ export interface ApiAboutUsAboutUs extends Struct.SingleTypeSchema {
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -508,9 +507,9 @@ export interface ApiAffiliateDisclosureAffiliateDisclosure
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'page_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -528,10 +527,8 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    article: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
     article_title: Schema.Attribute.String;
     articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -562,26 +559,25 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
         'unit.responsible-gambling',
       ]
     >;
+    post_category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::category.category'
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    related_articles: Schema.Attribute.Relation<
+    relatedArticles: Schema.Attribute.Relation<
       'manyToMany',
       'api::article.article'
     >;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'article_title'>;
     source_refernces: Schema.Attribute.Component<
       'content.source-reference',
       true
-    >;
-    suggested_reading: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::article.article'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     url_path: Schema.Attribute.Component<'shared.public-url', false>;
-    written_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    writtenBy: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
   };
 }
 
@@ -596,16 +592,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    article: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    authors: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::casino-review.casino-review'
-    >;
-    casino_bonus: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::casino-bonus.casino-bonus'
-    >;
     casino_bonuses: Schema.Attribute.Relation<
       'oneToMany',
       'api::casino-bonus.casino-bonus'
@@ -614,10 +601,13 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::casino-review.casino-review'
     >;
-    categorie: Schema.Attribute.Relation<'oneToMany', 'api::category.category'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    factCheckedArticles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::article.article'
+    >;
     fullBio: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -633,6 +623,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.Enumeration<['Reviewer', 'Fact Checker', 'Editor']>;
     shortBio: Schema.Attribute.RichText &
@@ -642,19 +633,10 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
           preset: 'defaultHtml';
         }
       >;
-    slug: Schema.Attribute.UID<'name'>;
     socialMedia: Schema.Attribute.Component<'socials.social-links', true>;
     sportsbook_bonuses: Schema.Attribute.Relation<
       'oneToMany',
       'api::sportsbook-bonus.sportsbook-bonus'
-    >;
-    sportsbook_bonuseses: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::sportsbook-bonus.sportsbook-bonus'
-    >;
-    sportsbook_review: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::sportsbook-review.sportsbook-review'
     >;
     sportsbook_reviews: Schema.Attribute.Relation<
       'oneToMany',
@@ -663,7 +645,6 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -705,13 +686,13 @@ export interface ApiBusinessModelBusinessModel extends Struct.SingleTypeSchema {
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
+    seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url_path: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -726,14 +707,13 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
+    casino_bonus_types: Schema.Attribute.Component<
+      'casino.casino-bonus-types',
+      false
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    fact_checked_by: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::author.author'
-    >;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
     highlighted_bonus_offer: Schema.Attribute.Component<
       'content.highligted-bonus-offer',
@@ -771,39 +751,101 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
         'content.trust-signals',
       ]
     >;
+    operator_brand: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-brand.operator-brand'
+    >;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
     >;
     page_title: Schema.Attribute.String;
     prosCons: Schema.Attribute.Component<'shared.pros-cons', false>;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     related_casino_review: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToOne',
       'api::casino-review.casino-review'
+    >;
+    review_country: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::country.country'
     >;
     review_summary: Schema.Attribute.Component<'content.review-summary', false>;
     reviewed_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     source_refernces: Schema.Attribute.Component<
       'content.source-reference',
       false
     >;
     sportsbook_bonus: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToOne',
       'api::sportsbook-bonus.sportsbook-bonus'
     >;
     sportsbook_review: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToOne',
       'api::sportsbook-review.sportsbook-review'
     >;
-    trust_signal: Schema.Attribute.Component<'content.trust-signals', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url_path: Schema.Attribute.Component<'shared.public-url', false>;
+  };
+}
+
+export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
+  collectionName: 'casino_games';
+  info: {
+    displayName: 'Casino Game';
+    pluralName: 'casino-games';
+    singularName: 'casino-game';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    casino_reviews: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::casino-review.casino-review'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    game_type: Schema.Attribute.Enumeration<
+      [
+        'Slots',
+        'Sackpot Slots',
+        'Table Games',
+        'Roulette',
+        'Blackjack',
+        'Baccarat',
+        'Poker',
+        'Live Casino',
+        'Crash Games',
+        'Instants',
+        'Keno',
+        'Lottery',
+        'Bingo',
+      ]
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::casino-game.casino-game'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    rtp: Schema.Attribute.Decimal;
+    slug: Schema.Attribute.UID<'title'>;
+    software_provider: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::software-provider.software-provider'
+    >;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    volatility: Schema.Attribute.Enumeration<['Low', 'Medium', 'High']>;
   };
 }
 
@@ -819,31 +861,23 @@ export interface ApiCasinoReviewCasinoReview
     draftAndPublish: true;
   };
   attributes: {
-    alternative_operators: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::country.country'
-    >;
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    casino_bonuses: Schema.Attribute.Relation<
-      'manyToMany',
+    casino_bonus: Schema.Attribute.Relation<
+      'oneToOne',
       'api::casino-bonus.casino-bonus'
     >;
-    casino_provider: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::operator.operator'
+    casino_features: Schema.Attribute.Component<
+      'casino.casino-features',
+      false
+    >;
+    casino_games: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::casino-game.casino-game'
     >;
     country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ctaButton: Schema.Attribute.Component<'shared.cta-button', true>;
-    currencies_supported: Schema.Attribute.Component<
-      'unit.currencies-supported',
-      true
-    >;
-    fact_checker: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
-    gamesOffered: Schema.Attribute.Component<'unit.game-name', true>;
     highlighted_bonus_offer: Schema.Attribute.Component<
       'content.highligted-bonus-offer',
       false
@@ -867,53 +901,47 @@ export interface ApiCasinoReviewCasinoReview
     main_content: Schema.Attribute.DynamicZone<
       [
         'content.rich-text',
-        'content.bonus-offer',
         'shared.cta-button',
         'unit.label-and-value',
-        'unit.game-name',
         'unit.responsible-gambling',
+        'content.highligted-bonus-offer',
       ]
     >;
-    operator_countries: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::operator-country.operator-country'
+    operator_brand: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-brand.operator-brand'
     >;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
     >;
     pageTitle: Schema.Attribute.String;
-    payment_methods: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::payment-method.payment-method'
-    >;
     prosCons: Schema.Attribute.Component<'shared.pros-cons', false>;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
-    related_sportsbook: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::sportsbook-review.sportsbook-review'
-    >;
     review_summary: Schema.Attribute.Component<'content.review-summary', false>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
-    softwareProviders: Schema.Attribute.Component<
-      'unit.responsible-gambling',
-      true
+    software_providers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::software-provider.software-provider'
     >;
     source_refernces: Schema.Attribute.Component<
       'content.source-reference',
       true
     >;
-    sportsbook_bonuses: Schema.Attribute.Relation<
-      'manyToMany',
+    sportsbook_bonus: Schema.Attribute.Relation<
+      'oneToOne',
       'api::sportsbook-bonus.sportsbook-bonus'
     >;
-    trust_signal: Schema.Attribute.Component<'content.trust-signals', false>;
+    sportsbook_review: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::sportsbook-review.sportsbook-review'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url: Schema.Attribute.Component<'shared.public-url', false>;
+    written_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
   };
 }
 
@@ -930,17 +958,13 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   attributes: {
     articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
     categories: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToMany',
       'api::category.category'
     >;
     category_title: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    fact_checked_by: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::author.author'
-    >;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
     lead_paragraph: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
@@ -966,18 +990,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::category.category'
     >;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
-    related_categories: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::category.category'
-    >;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
-    sub_categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1014,10 +1030,10 @@ export interface ApiContactUsContactUs extends Struct.SingleTypeSchema {
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     social_media_links: Schema.Attribute.Component<
       'socials.social-links',
       true
@@ -1058,9 +1074,9 @@ export interface ApiCookiePolicyCookiePolicy extends Struct.SingleTypeSchema {
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'page_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1083,7 +1099,7 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
       'api::casino-bonus.casino-bonus'
     >;
     casino_reviews: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToMany',
       'api::casino-review.casino-review'
     >;
     countryCode: Schema.Attribute.String;
@@ -1109,17 +1125,21 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
       'api::country.country'
     > &
       Schema.Attribute.Private;
-    online_casino_review: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::casino-review.casino-review'
+    operator_brands: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::operator-brand.operator-brand'
     >;
+    operator_countries: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::operator-country.operator-country'
+    >;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     responsibleGambling: Schema.Attribute.Component<
       'unit.responsible-gambling',
       true
     >;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'countryCode'>;
     sourceReference: Schema.Attribute.Component<
       'content.source-reference',
       true
@@ -1128,10 +1148,13 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::sportsbook-bonus.sportsbook-bonus'
     >;
+    sportsbook_reviews: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sportsbook-review.sportsbook-review'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url_path: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -1167,10 +1190,10 @@ export interface ApiEditorialPolicyEditorialPolicy
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1219,6 +1242,14 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    affiliateDisclosure: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    ageWarning: Schema.Attribute.String;
     analytics_and_tracking: Schema.Attribute.Component<
       'global.analytics-and-tracking',
       false
@@ -1227,7 +1258,6 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
       'global.brand-information',
       false
     >;
-    countries: Schema.Attribute.Component<'global.country', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1251,8 +1281,19 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
       false
     >;
     publishedAt: Schema.Attribute.DateTime;
+    responsibleGamblingMessage: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     social_media_links: Schema.Attribute.Component<
       'socials.social-links',
+      true
+    >;
+    supportOrganizations: Schema.Attribute.Component<
+      'unit.responsible-gambling',
       true
     >;
     updatedAt: Schema.Attribute.DateTime;
@@ -1293,17 +1334,11 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
       'api::sportsbook-review.sportsbook-review'
     >;
     hero_section: Schema.Attribute.Component<'content.hero-section', false>;
-    lead_paragraph: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
       Schema.Attribute.Private;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     richText: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
@@ -1313,46 +1348,10 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
         }
       >;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'page_title'>;
     support_organizations: Schema.Attribute.Component<
       'unit.responsible-gambling',
       true
     >;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiLeagueLeague extends Struct.CollectionTypeSchema {
-  collectionName: 'leagues';
-  info: {
-    displayName: 'League';
-    pluralName: 'leagues';
-    singularName: 'league';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    country: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    isActive: Schema.Attribute.Boolean;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::league.league'
-    > &
-      Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    name: Schema.Attribute.String;
-    official_site: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    season_format: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'name'>;
-    sport: Schema.Attribute.Relation<'manyToOne', 'api::sport.sport'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1387,6 +1386,73 @@ export interface ApiNavigationNavigation extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiOperatorBrandOperatorBrand
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'operator_brands';
+  info: {
+    displayName: 'Operator Brand';
+    pluralName: 'operator-brands';
+    singularName: 'operator-brand';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    casino_bonuses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::casino-bonus.casino-bonus'
+    >;
+    casino_reviews: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::casino-review.casino-review'
+    >;
+    countries_available: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::country.country'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    headquarters: Schema.Attribute.String;
+    is_licensed: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::operator-brand.operator-brand'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    operator_countries: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::operator-country.operator-country'
+    >;
+    parent_company: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    sportsbook_bonuses: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sportsbook-bonus.sportsbook-bonus'
+    >;
+    sportsbook_reviews: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sportsbook-review.sportsbook-review'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    website_url: Schema.Attribute.String;
+    year_founded: Schema.Attribute.String;
+  };
+}
+
 export interface ApiOperatorCountryOperatorCountry
   extends Struct.CollectionTypeSchema {
   collectionName: 'operator_countries';
@@ -1399,110 +1465,61 @@ export interface ApiOperatorCountryOperatorCountry
     draftAndPublish: true;
   };
   attributes: {
-    additionalNotes: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
     casino_bonuses: Schema.Attribute.Relation<
       'oneToMany',
       'api::casino-bonus.casino-bonus'
     >;
-    casino_review: Schema.Attribute.Relation<
+    casino_reviews: Schema.Attribute.Relation<
       'oneToMany',
       'api::casino-review.casino-review'
     >;
-    casino_reviews: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::casino-review.casino-review'
-    >;
+    country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    hasMobileApp: Schema.Attribute.Boolean;
-    isLicensed: Schema.Attribute.Boolean;
-    isVerified: Schema.Attribute.Boolean;
-    last_tested_date: Schema.Attribute.Date;
-    licenseInfo: Schema.Attribute.Component<'shared.licence-detail', true>;
+    entry_year: Schema.Attribute.String;
+    license_detail: Schema.Attribute.Component<'shared.license-detail', true>;
+    local_support: Schema.Attribute.Component<'shared.contact-detail', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::operator-country.operator-country'
     > &
       Schema.Attribute.Private;
-    operatorLegalName: Schema.Attribute.String;
-    paymentMethods: Schema.Attribute.Component<'content.payment-method', true>;
+    notes: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    operating_company: Schema.Attribute.String;
+    operator_brand: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-brand.operator-brand'
+    >;
+    operator_country_cta: Schema.Attribute.Component<'shared.cta-button', true>;
+    operator_country_features: Schema.Attribute.Component<
+      'operator-country.operator-country-features',
+      false
+    >;
+    operator_local_name: Schema.Attribute.String;
+    payment_methods: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::payment-method.payment-method'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     sportsbook_bonuses: Schema.Attribute.Relation<
       'oneToMany',
       'api::sportsbook-bonus.sportsbook-bonus'
     >;
-    sportsbook_bonuseses: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::sportsbook-bonus.sportsbook-bonus'
-    >;
     sportsbook_reviews: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToMany',
       'api::sportsbook-review.sportsbook-review'
     >;
-    supportChannels: Schema.Attribute.Component<'unit.label-and-value', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    website: Schema.Attribute.String;
-  };
-}
-
-export interface ApiOperatorOperator extends Struct.CollectionTypeSchema {
-  collectionName: 'operators';
-  info: {
-    displayName: 'Operator';
-    pluralName: 'operators';
-    singularName: 'operator';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    casino_reviews: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::casino-review.casino-review'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
-    globalLicenseInfo: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
-    headquarters: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::operator.operator'
-    > &
-      Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files'>;
-    official_website: Schema.Attribute.String;
-    operatorName: Schema.Attribute.String;
-    parentCompany: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    yearFounded: Schema.Attribute.Date;
   };
 }
 
@@ -1518,7 +1535,6 @@ export interface ApiOurReviewProcessOurReviewProcess
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.Relation<'oneToOne', 'api::author.author'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1546,13 +1562,13 @@ export interface ApiOurReviewProcessOurReviewProcess
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
+    seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url_path: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -1585,6 +1601,7 @@ export interface ApiPageNotFoundPageNotFound extends Struct.SingleTypeSchema {
       'api::page-not-found.page-not-found'
     > &
       Schema.Attribute.Private;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     subtitle: Schema.Attribute.String;
@@ -1607,13 +1624,10 @@ export interface ApiPaymentMethodPaymentMethod
     draftAndPublish: true;
   };
   attributes: {
-    casino_reviews: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::casino-review.casino-review'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    crypto_payments_supported: Schema.Attribute.Boolean;
     fees: Schema.Attribute.String;
     isActive: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -1623,9 +1637,13 @@ export interface ApiPaymentMethodPaymentMethod
     > &
       Schema.Attribute.Private;
     logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    max_withdrawal: Schema.Attribute.String;
+    max_payout: Schema.Attribute.String;
     min_deposit: Schema.Attribute.String;
     name: Schema.Attribute.String;
+    operator_countries: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::operator-country.operator-country'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
     transaction_time: Schema.Attribute.String;
@@ -1668,9 +1686,9 @@ export interface ApiPrivacyPolicyPrivacyPolicy extends Struct.SingleTypeSchema {
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'page_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1748,9 +1766,9 @@ export interface ApiResponsibleGamblingResponsibleGambling
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'page_title'>;
     support_organizations: Schema.Attribute.Component<
       'unit.responsible-gambling',
       true
@@ -1761,32 +1779,38 @@ export interface ApiResponsibleGamblingResponsibleGambling
   };
 }
 
-export interface ApiSportSport extends Struct.CollectionTypeSchema {
-  collectionName: 'sports';
+export interface ApiSoftwareProviderSoftwareProvider
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'software_providers';
   info: {
-    displayName: 'Sport';
-    pluralName: 'sports';
-    singularName: 'sport';
+    displayName: 'Software Provider';
+    pluralName: 'software-providers';
+    singularName: 'software-provider';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    coverImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
+    casino_games: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::casino-game.casino-game'
+    >;
+    casino_reviews: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::casino-review.casino-review'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    is_active: Schema.Attribute.Boolean;
-    leagues: Schema.Attribute.Relation<'oneToMany', 'api::league.league'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::sport.sport'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::software-provider.software-provider'
+    > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
     name: Schema.Attribute.String;
-    priority: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1805,18 +1829,13 @@ export interface ApiSportsbookBonusSportsbookBonus
     draftAndPublish: true;
   };
   attributes: {
-    alternative_operators: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::operator-country.operator-country'
+    casino_bonus: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::casino-bonus.casino-bonus'
     >;
-    country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    fact_checked_by: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::author.author'
-    >;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
     highlighted_bonus_offer: Schema.Attribute.Component<
       'content.highligted-bonus-offer',
@@ -1854,39 +1873,49 @@ export interface ApiSportsbookBonusSportsbookBonus
         'unit.label-and-value',
       ]
     >;
+    operator_brand: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-brand.operator-brand'
+    >;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
     >;
     page_title: Schema.Attribute.String;
     prosCons: Schema.Attribute.Component<'shared.pros-cons', false>;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
-    related_casino: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::casino-review.casino-review'
-    >;
-    related_casino_bonus: Schema.Attribute.Relation<
-      'manyToMany',
+    related_casino_bonus_review: Schema.Attribute.Relation<
+      'oneToOne',
       'api::casino-bonus.casino-bonus'
     >;
-    related_sportsbook: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::sportsbook-review.sportsbook-review'
+    related_casino_review: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::casino-review.casino-review'
+    >;
+    review_country: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::country.country'
     >;
     review_summary: Schema.Attribute.Component<'content.review-summary', false>;
     reviewed_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     short_title: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'short_title'>;
     source_refernces: Schema.Attribute.Component<
       'content.source-reference',
       false
     >;
-    trust_signal: Schema.Attribute.Component<'content.trust-signals', false>;
+    sportsbook_bonus_types: Schema.Attribute.Component<
+      'sportsbook.sportsbook-bonus-types',
+      false
+    >;
+    sportsbook_review: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::sportsbook-review.sportsbook-review'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url_path: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -1902,14 +1931,9 @@ export interface ApiSportsbookReviewSportsbookReview
     draftAndPublish: true;
   };
   attributes: {
-    alternative_operators: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::operator-country.operator-country'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
     fact_checked_by: Schema.Attribute.Relation<
       'manyToOne',
       'api::author.author'
@@ -1936,43 +1960,51 @@ export interface ApiSportsbookReviewSportsbookReview
     > &
       Schema.Attribute.Private;
     mainContent: Schema.Attribute.DynamicZone<
-      [
-        'content.rich-text',
-        'content.payment-method',
-        'content.bonus-offer',
-        'shared.pros-cons',
-      ]
+      ['content.rich-text', 'shared.pros-cons']
+    >;
+    operator_brand: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-brand.operator-brand'
+    >;
+    operator_country: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-country.operator-country'
     >;
     pageTitle: Schema.Attribute.String;
-    prosCons: Schema.Attribute.Component<'shared.pros-cons', true>;
+    prosCons: Schema.Attribute.Component<'shared.pros-cons', false>;
     prosCons_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
-    related_casino: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::casino-review.casino-review'
-    >;
     related_casino_bonus: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToOne',
       'api::casino-bonus.casino-bonus'
     >;
+    related_casino_review: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::casino-review.casino-review'
+    >;
     related_sportsbook_bonus: Schema.Attribute.Relation<
-      'manyToMany',
+      'oneToOne',
       'api::sportsbook-bonus.sportsbook-bonus'
     >;
+    review_country: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::country.country'
+    >;
     review_summary: Schema.Attribute.Component<'content.review-summary', false>;
-    reviewed_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     shortTitle: Schema.Attribute.String;
-    slug: Schema.Attribute.UID<'shortTitle'>;
     source_refernces: Schema.Attribute.Component<
       'content.source-reference',
       true
     >;
-    trust_signal: Schema.Attribute.Component<'content.trust-signals', false>;
+    sportsbook_features: Schema.Attribute.Component<
+      'sportsbook.sportsbook-features',
+      false
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url: Schema.Attribute.Component<'shared.public-url', false>;
   };
 }
 
@@ -2007,9 +2039,9 @@ export interface ApiTermsAndConditionTermsAndCondition
         }
       >;
     page_title: Schema.Attribute.String;
+    public_url: Schema.Attribute.Component<'shared.public-url', false>;
     publishedAt: Schema.Attribute.DateTime;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    slug: Schema.Attribute.UID<'page_title'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2532,6 +2564,7 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::business-model.business-model': ApiBusinessModelBusinessModel;
       'api::casino-bonus.casino-bonus': ApiCasinoBonusCasinoBonus;
+      'api::casino-game.casino-game': ApiCasinoGameCasinoGame;
       'api::casino-review.casino-review': ApiCasinoReviewCasinoReview;
       'api::category.category': ApiCategoryCategory;
       'api::contact-us.contact-us': ApiContactUsContactUs;
@@ -2541,17 +2574,16 @@ declare module '@strapi/strapi' {
       'api::footer.footer': ApiFooterFooter;
       'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::home.home': ApiHomeHome;
-      'api::league.league': ApiLeagueLeague;
       'api::navigation.navigation': ApiNavigationNavigation;
+      'api::operator-brand.operator-brand': ApiOperatorBrandOperatorBrand;
       'api::operator-country.operator-country': ApiOperatorCountryOperatorCountry;
-      'api::operator.operator': ApiOperatorOperator;
       'api::our-review-process.our-review-process': ApiOurReviewProcessOurReviewProcess;
       'api::page-not-found.page-not-found': ApiPageNotFoundPageNotFound;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'api::redirect.redirect': ApiRedirectRedirect;
       'api::responsible-gambling.responsible-gambling': ApiResponsibleGamblingResponsibleGambling;
-      'api::sport.sport': ApiSportSport;
+      'api::software-provider.software-provider': ApiSoftwareProviderSoftwareProvider;
       'api::sportsbook-bonus.sportsbook-bonus': ApiSportsbookBonusSportsbookBonus;
       'api::sportsbook-review.sportsbook-review': ApiSportsbookReviewSportsbookReview;
       'api::terms-and-condition.terms-and-condition': ApiTermsAndConditionTermsAndCondition;

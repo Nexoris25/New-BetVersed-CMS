@@ -25,6 +25,13 @@
         "videos",
         "audios"
       ]
+    },
+    "lead_paragraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   },
   "config": {}

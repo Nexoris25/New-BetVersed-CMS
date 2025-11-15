@@ -41,6 +41,11 @@
       "type": "component",
       "component": "shared.cta-button",
       "repeatable": false
+    },
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
+      "repeatable": false
     }
   }
 }

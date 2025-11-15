@@ -17,11 +17,7 @@
     "short_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "short_title"
-    },
-    "url": {
+    "public_url": {
       "type": "component",
       "component": "shared.public-url",
       "repeatable": false
@@ -49,44 +45,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "ctaButton": {
-      "type": "component",
-      "component": "shared.cta-button",
-      "repeatable": true
-    },
-    "casino_provider": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator.operator",
-      "inversedBy": "casino_reviews"
-    },
-    "operator_countries": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::operator-country.operator-country",
-      "inversedBy": "casino_reviews"
-    },
-    "softwareProviders": {
-      "type": "component",
-      "component": "unit.responsible-gambling",
-      "repeatable": true
-    },
-    "gamesOffered": {
-      "type": "component",
-      "component": "unit.game-name",
-      "repeatable": true
-    },
-    "payment_methods": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::payment-method.payment-method",
-      "inversedBy": "casino_reviews"
-    },
-    "currencies_supported": {
-      "type": "component",
-      "component": "unit.currencies-supported",
-      "repeatable": true
-    },
     "prosCons": {
       "type": "component",
       "component": "shared.pros-cons",
@@ -96,11 +54,10 @@
       "type": "dynamiczone",
       "components": [
         "content.rich-text",
-        "content.bonus-offer",
         "shared.cta-button",
         "unit.label-and-value",
-        "unit.game-name",
-        "unit.responsible-gambling"
+        "unit.responsible-gambling",
+        "content.highligted-bonus-offer"
       ]
     },
     "faqs": {
@@ -113,66 +70,72 @@
       "component": "content.source-reference",
       "repeatable": true
     },
-    "fact_checker": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "casino_reviews"
-    },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "authors"
-    },
-    "related_sportsbook": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sportsbook-review.sportsbook-review",
-      "inversedBy": "related_casino"
-    },
     "last_tested_date": {
       "type": "date"
     },
-    "alternative_operators": {
+    "casino_bonus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "related_casino_review"
+    },
+    "highlighted_bonus_offer": {
+      "type": "component",
+      "component": "content.highligted-bonus-offer",
+      "repeatable": false
+    },
+    "operator_brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::operator-brand.operator-brand",
+      "inversedBy": "casino_reviews"
+    },
+    "sportsbook_bonus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "inversedBy": "related_casino_review"
+    },
+    "sportsbook_review": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "inversedBy": "related_casino_review"
+    },
+    "casino_games": {
       "type": "relation",
       "relation": "manyToMany",
-      "target": "api::country.country",
+      "target": "api::casino-game.casino-game",
+      "mappedBy": "casino_reviews"
+    },
+    "software_providers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::software-provider.software-provider",
       "inversedBy": "casino_reviews"
     },
     "operator_country": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::operator-country.operator-country",
-      "inversedBy": "casino_review"
+      "inversedBy": "casino_reviews"
+    },
+    "written_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "casino_reviews"
+    },
+    "casino_features": {
+      "type": "component",
+      "component": "casino.casino-features",
+      "repeatable": false
     },
     "country": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::country.country",
-      "inversedBy": "online_casino_review"
-    },
-    "casino_bonuses": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::casino-bonus.casino-bonus",
-      "mappedBy": "related_casino_review"
-    },
-    "sportsbook_bonuses": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::sportsbook-bonus.sportsbook-bonus",
-      "inversedBy": "related_casino"
-    },
-    "trust_signal": {
-      "type": "component",
-      "component": "content.trust-signals",
-      "repeatable": false
-    },
-    "highlighted_bonus_offer": {
-      "type": "component",
-      "component": "content.highligted-bonus-offer",
-      "repeatable": false
+      "inversedBy": "casino_reviews"
     }
   }
 }

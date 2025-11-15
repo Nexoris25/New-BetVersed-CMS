@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_sportsbook_sportsbook_features",
+  "info": {
+    "displayName": "Sportsbook Features"
+  },
+  "options": {},
+  "attributes": {
+    "live_betting_available": {
+      "type": "boolean"
+    },
+    "live_streaming_available": {
+      "type": "boolean"
+    },
+    "bet_builder_available": {
+      "type": "boolean"
+    },
+    "cashout_available": {
+      "type": "boolean"
+    },
+    "is_1up_available": {
+      "type": "boolean"
+    },
+    "is2up_available": {
+      "type": "boolean"
+    },
+    "acca_insurance_available": {
+      "type": "boolean"
+    },
+    "boosted_odds_available": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

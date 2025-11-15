@@ -1,0 +1,76 @@
+{
+  "collectionName": "components_casino_casino_bonus_types",
+  "info": {
+    "displayName": "Casino Bonus Types"
+  },
+  "options": {},
+  "attributes": {
+    "hasWelcomeBonus": {
+      "type": "boolean"
+    },
+    "hasNoDepositBonus": {
+      "type": "boolean"
+    },
+    "hasFreeSpinsBonus": {
+      "type": "boolean"
+    },
+    "hasReloadBonus": {
+      "type": "boolean"
+    },
+    "hasCashbackBonus": {
+      "type": "boolean"
+    },
+    "hasHighRollerBonus": {
+      "type": "boolean"
+    },
+    "hasLoyaltyProgram": {
+      "type": "boolean"
+    },
+    "hasVIPRewards": {
+      "type": "boolean"
+    },
+    "hasBirthdayBonus": {
+      "type": "boolean"
+    },
+    "hasCryptoBonus": {
+      "type": "boolean"
+    },
+    "hasLiveCasinoBonus": {
+      "type": "boolean"
+    },
+    "hasDropsAndWins": {
+      "type": "boolean"
+    },
+    "hasSlotTournaments": {
+      "type": "boolean"
+    },
+    "hasGameProviderBonus": {
+      "type": "boolean"
+    },
+    "hasMysteryBonus": {
+      "type": "boolean"
+    },
+    "hasCashRaceBonus": {
+      "type": "boolean"
+    },
+    "hasLossRebateBonus": {
+      "type": "boolean"
+    },
+    "hasWeeklyFreeSpins": {
+      "type": "boolean"
+    },
+    "hasMobileExclusiveOffers": {
+      "type": "boolean"
+    },
+    "hasReferralBonus": {
+      "type": "boolean"
+    },
+    "hasDepositMatchBonus": {
+      "type": "boolean"
+    },
+    "hasWheelOfFortuneBonus": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

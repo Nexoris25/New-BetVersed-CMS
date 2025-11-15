@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_operator_country_operator_country_features",
+  "info": {
+    "displayName": "Operator Country Features"
+  },
+  "options": {},
+  "attributes": {
+    "sportsbook_available": {
+      "type": "boolean"
+    },
+    "casino_available": {
+      "type": "boolean"
+    },
+    "lotto_available": {
+      "type": "boolean"
+    },
+    "android_app_available": {
+      "type": "boolean"
+    },
+    "ios_app_available": {
+      "type": "boolean"
+    },
+    "huawei_app_available": {
+      "type": "boolean"
+    },
+    "windows_app_available": {
+      "type": "boolean"
+    },
+    "responsible_gambling_tools": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

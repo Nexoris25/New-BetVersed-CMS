@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_casino_casino_features",
+  "info": {
+    "displayName": "Casino Features"
+  },
+  "options": {},
+  "attributes": {
+    "live_casino_available": {
+      "type": "boolean"
+    },
+    "virtual_games_available": {
+      "type": "boolean"
+    },
+    "jackpot_games_available": {
+      "type": "boolean"
+    },
+    "table_games_available": {
+      "type": "boolean"
+    },
+    "slots_available": {
+      "type": "boolean"
+    },
+    "provably_fair_games_available": {
+      "type": "boolean"
+    },
+    "bingo_available": {
+      "type": "boolean"
+    },
+    "lottery_available": {
+      "type": "boolean"
+    },
+    "vip_program_available": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

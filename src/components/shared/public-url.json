@@ -5,15 +5,18 @@
   },
   "options": {},
   "attributes": {
-    "path": {
+    "slug": {
+      "type": "string"
+    },
+    "full_url_path": {
       "type": "string",
-      "required": false,
       "pluginOptions": {
         "content-manager": {
           "visible": true,
           "editable": true
         }
-      }
+      },
+      "required": false
     }
   }
 }

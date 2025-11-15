@@ -14,10 +14,6 @@
     "page_title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "page_title"
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -39,6 +35,11 @@
     "seoMeta": {
       "type": "component",
       "component": "shared.seo",
+      "repeatable": false
+    },
+    "public_url": {
+      "type": "component",
+      "component": "shared.public-url",
       "repeatable": false
     }
   }
