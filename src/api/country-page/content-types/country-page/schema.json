@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "country_pages",
+  "info": {
+    "singularName": "country-page",
+    "pluralName": "country-pages",
+    "displayName": "Country Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page_title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "page_title"
+    },
+    "review_type": {
+      "type": "enumeration",
+      "enum": [
+        "Sportsbook Review",
+        "Casino Review",
+        "Sportsbook Bonus",
+        "Casino Bonus"
+      ]
+    },
+    "short_title": {
+      "type": "string"
+    },
+    "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "lead_paragraph": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "seoMeta": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "richText": {
+      "type": "component",
+      "component": "content.rich-text",
+      "repeatable": false
+    },
+    "responsibleGambling": {
+      "type": "component",
+      "component": "shared.responsible-gambling",
+      "repeatable": false
+    },
+    "faqs": {
+      "type": "component",
+      "component": "shared.fa-qs-section",
+      "repeatable": false
+    },
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "country_pages"
+    },
+    "operator_countries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::operator-country.operator-country",
+      "inversedBy": "country_pages"
+    }
+  }
+}

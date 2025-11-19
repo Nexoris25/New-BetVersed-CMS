@@ -48,6 +48,9 @@
         "images",
         "files"
       ]
+    },
+    "site_name": {
+      "type": "string"
     }
   },
   "config": {}

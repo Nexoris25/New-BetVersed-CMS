@@ -11,15 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "country": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::country.country",
-      "inversedBy": "operator_countries"
-    },
-    "operating_company": {
-      "type": "string"
-    },
     "license_detail": {
       "type": "component",
       "component": "shared.license-detail",
@@ -30,46 +21,6 @@
       "component": "shared.contact-detail",
       "repeatable": false
     },
-    "operator_brand": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-brand.operator-brand",
-      "inversedBy": "operator_countries"
-    },
-    "sportsbook_reviews": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::sportsbook-review.sportsbook-review",
-      "mappedBy": "operator_country"
-    },
-    "sportsbook_bonuses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::sportsbook-bonus.sportsbook-bonus",
-      "mappedBy": "operator_country"
-    },
-    "casino_bonuses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::casino-bonus.casino-bonus",
-      "mappedBy": "operator_country"
-    },
-    "casino_reviews": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::casino-review.casino-review",
-      "mappedBy": "operator_country"
-    },
-    "operator_local_name": {
-      "type": "string"
-    },
-    "notes": {
-      "type": "customField",
-      "customField": "plugin::ckeditor5.CKEditor",
-      "options": {
-        "preset": "defaultHtml"
-      }
-    },
     "operator_country_features": {
       "type": "component",
       "component": "operator-country.operator-country-features",
@@ -78,16 +29,92 @@
     "entry_year": {
       "type": "string"
     },
+    "local_name": {
+      "type": "string"
+    },
     "operator_country_cta": {
       "type": "component",
       "component": "shared.cta-button",
       "repeatable": true
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::operator-brand.operator-brand",
+      "inversedBy": "operator_countries"
+    },
+    "sportsbook_review": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "inversedBy": "operator_country"
+    },
+    "casino_review": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "operator_country"
+    },
+    "sportsbook_bonus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "inversedBy": "operator_country"
+    },
+    "casino_bonus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "operator_country"
     },
     "payment_methods": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::payment-method.payment-method",
       "inversedBy": "operator_countries"
+    },
+    "operator_countries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::operator-country.operator-country",
+      "inversedBy": "alternatives"
+    },
+    "alternatives": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "operator_countries"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "short_description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "operating_company": {
+      "type": "string"
+    },
+    "isFeatured": {
+      "type": "boolean"
+    },
+    "country_pages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::country-page.country-page",
+      "mappedBy": "operator_countries"
     }
   }
 }

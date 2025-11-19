@@ -45,11 +45,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "prosCons": {
-      "type": "component",
-      "component": "shared.pros-cons",
-      "repeatable": false
-    },
     "main_content": {
       "type": "dynamiczone",
       "components": [
@@ -57,7 +52,8 @@
         "shared.cta-button",
         "unit.label-and-value",
         "unit.responsible-gambling",
-        "content.highligted-bonus-offer"
+        "content.highligted-bonus-offer",
+        "content.heading"
       ]
     },
     "faqs": {
@@ -84,12 +80,6 @@
       "component": "content.highligted-bonus-offer",
       "repeatable": false
     },
-    "operator_brand": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-brand.operator-brand",
-      "inversedBy": "casino_reviews"
-    },
     "sportsbook_bonus": {
       "type": "relation",
       "relation": "oneToOne",
@@ -114,12 +104,6 @@
       "target": "api::software-provider.software-provider",
       "inversedBy": "casino_reviews"
     },
-    "operator_country": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-country.operator-country",
-      "inversedBy": "casino_reviews"
-    },
     "written_by": {
       "type": "relation",
       "relation": "manyToOne",
@@ -131,11 +115,16 @@
       "component": "casino.casino-features",
       "repeatable": false
     },
-    "country": {
+    "prosConsSection": {
+      "type": "component",
+      "component": "shared.pros-cons-section",
+      "repeatable": false
+    },
+    "operator_country": {
       "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::country.country",
-      "inversedBy": "casino_reviews"
+      "relation": "oneToOne",
+      "target": "api::operator-country.operator-country",
+      "inversedBy": "casino_review"
     }
   }
 }

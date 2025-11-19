@@ -22,12 +22,6 @@
       "component": "shared.public-url",
       "repeatable": false
     },
-    "operator_brand": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-brand.operator-brand",
-      "inversedBy": "sportsbook_reviews"
-    },
     "leadParagraph": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
@@ -51,19 +45,12 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "prosCons_title": {
-      "type": "string"
-    },
-    "prosCons": {
-      "type": "component",
-      "component": "shared.pros-cons",
-      "repeatable": false
-    },
     "mainContent": {
       "type": "dynamiczone",
       "components": [
         "content.rich-text",
-        "shared.pros-cons"
+        "shared.pros-cons-section",
+        "content.heading"
       ]
     },
     "faqs": {
@@ -83,12 +70,6 @@
       "type": "component",
       "component": "content.highligted-bonus-offer",
       "repeatable": false
-    },
-    "review_country": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::country.country",
-      "inversedBy": "sportsbook_reviews"
     },
     "related_casino_review": {
       "type": "relation",
@@ -114,16 +95,21 @@
       "target": "api::author.author",
       "inversedBy": "sportsbook_reviews"
     },
-    "operator_country": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-country.operator-country",
-      "inversedBy": "sportsbook_reviews"
-    },
     "sportsbook_features": {
       "type": "component",
       "component": "sportsbook.sportsbook-features",
       "repeatable": false
+    },
+    "prosConsSection": {
+      "type": "component",
+      "component": "shared.pros-cons-section",
+      "repeatable": false
+    },
+    "operator_country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "sportsbook_review"
     }
   }
 }

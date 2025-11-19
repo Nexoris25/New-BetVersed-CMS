@@ -50,11 +50,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "prosCons": {
-      "type": "component",
-      "component": "shared.pros-cons",
-      "repeatable": false
-    },
     "main_content": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
@@ -76,20 +71,14 @@
         "content.rich-text",
         "content.highligted-bonus-offer",
         "shared.cta-button",
-        "shared.pros-cons",
-        "unit.label-and-value"
+        "unit.label-and-value",
+        "content.heading"
       ]
     },
     "source_refernces": {
       "type": "component",
       "component": "content.source-reference",
       "repeatable": false
-    },
-    "operator_brand": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-brand.operator-brand",
-      "inversedBy": "sportsbook_bonuses"
     },
     "related_casino_review": {
       "type": "relation",
@@ -114,27 +103,26 @@
       "target": "api::sportsbook-review.sportsbook-review",
       "inversedBy": "related_sportsbook_bonus"
     },
-    "review_country": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::country.country",
-      "inversedBy": "sportsbook_bonuses"
-    },
-    "operator_country": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::operator-country.operator-country",
-      "inversedBy": "sportsbook_bonuses"
-    },
     "sportsbook_bonus_types": {
       "type": "component",
       "component": "sportsbook.sportsbook-bonus-types",
+      "repeatable": false
+    },
+    "prosConsSection": {
+      "type": "component",
+      "component": "shared.pros-cons-section",
       "repeatable": false
     },
     "casino_bonus": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "related_sportsbook_bonus"
+    },
+    "operator_country": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::operator-country.operator-country",
       "mappedBy": "sportsbook_bonus"
     }
   }

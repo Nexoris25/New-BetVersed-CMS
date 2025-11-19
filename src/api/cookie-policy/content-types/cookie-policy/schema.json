@@ -37,10 +37,9 @@
       "component": "shared.seo",
       "repeatable": false
     },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
+    "slug": {
+      "type": "uid",
+      "targetField": "page_title"
     }
   }
 }

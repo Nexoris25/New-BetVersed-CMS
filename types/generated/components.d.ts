@@ -69,6 +69,16 @@ export interface ContentBonusOffer extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentHeading extends Struct.ComponentSchema {
+  collectionName: 'components_content_headings';
+  info: {
+    displayName: 'heading';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+  };
+}
+
 export interface ContentHeroSection extends Struct.ComponentSchema {
   collectionName: 'components_content_hero_sections';
   info: {
@@ -497,6 +507,17 @@ export interface SharedProsCons extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedProsConsSection extends Struct.ComponentSchema {
+  collectionName: 'components_shared_pros_cons_sections';
+  info: {
+    displayName: 'prosConsSection';
+  };
+  attributes: {
+    prosConsSection: Schema.Attribute.Component<'shared.pros-cons', false>;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedPublicUrl extends Struct.ComponentSchema {
   collectionName: 'components_shared_public_urls';
   info: {
@@ -511,6 +532,24 @@ export interface SharedPublicUrl extends Struct.ComponentSchema {
         };
       }>;
     slug: Schema.Attribute.String;
+  };
+}
+
+export interface SharedResponsibleGambling extends Struct.ComponentSchema {
+  collectionName: 'components_shared_responsible_gamblings';
+  info: {
+    displayName: 'responsibleGambling';
+  };
+  attributes: {
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    organization: Schema.Attribute.Component<'unit.responsible-gambling', true>;
+    title: Schema.Attribute.String;
   };
 }
 
@@ -547,6 +586,7 @@ export interface SharedSeo extends Struct.ComponentSchema {
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'index, follow'>;
+    site_name: Schema.Attribute.String;
   };
 }
 
@@ -668,6 +708,7 @@ declare module '@strapi/strapi' {
       'casino.casino-bonus-types': CasinoCasinoBonusTypes;
       'casino.casino-features': CasinoCasinoFeatures;
       'content.bonus-offer': ContentBonusOffer;
+      'content.heading': ContentHeading;
       'content.hero-section': ContentHeroSection;
       'content.highligted-bonus-offer': ContentHighligtedBonusOffer;
       'content.payment-method': ContentPaymentMethod;
@@ -697,7 +738,9 @@ declare module '@strapi/strapi' {
       'shared.faqs-item': SharedFaqsItem;
       'shared.license-detail': SharedLicenseDetail;
       'shared.pros-cons': SharedProsCons;
+      'shared.pros-cons-section': SharedProsConsSection;
       'shared.public-url': SharedPublicUrl;
+      'shared.responsible-gambling': SharedResponsibleGambling;
       'shared.seo': SharedSeo;
       'socials.social-links': SocialsSocialLinks;
       'sportsbook.sportsbook-bonus-types': SportsbookSportsbookBonusTypes;

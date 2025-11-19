@@ -60,11 +60,6 @@
       "type": "component",
       "component": "unit.responsible-gambling",
       "repeatable": true
-    },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
     }
   }
 }

@@ -85,10 +85,15 @@
       "target": "api::article.article",
       "mappedBy": "fact_checked_by"
     },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "casino_bonus": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-bonus.casino-bonus",
+      "mappedBy": "fact_checked_by"
     }
   }
 }

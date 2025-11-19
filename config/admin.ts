@@ -2,8 +2,11 @@ export default ({ env }) => ({
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
     sessions: {
-      maxRefreshTokenLifespan: '7d', 
-      maxSessionLifespan: '1d',
+      accessTokenLifespan: 1800, // 30 minutes (in seconds)
+      maxRefreshTokenLifespan: 604800, // 7 days (in seconds)
+      idleRefreshTokenLifespan: 604800, // 7 days (in seconds)
+      maxSessionLifespan: 86400, // 1 day (in seconds)
+      idleSessionLifespan: 3600, // 1 hour (in seconds)
     },
   },
   apiToken: {
@@ -21,4 +24,4 @@ export default ({ env }) => ({
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
   },
-}) ; 
+});

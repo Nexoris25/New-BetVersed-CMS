@@ -45,10 +45,9 @@
       "component": "shared.fa-qs-section",
       "repeatable": false
     },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
+    "slug": {
+      "type": "uid",
+      "targetField": "short_title"
     }
   }
 }
