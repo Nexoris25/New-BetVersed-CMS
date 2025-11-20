@@ -70,12 +70,6 @@
       "relation": "manyToOne",
       "target": "api::country.country",
       "inversedBy": "country_pages"
-    },
-    "operator_countries": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::operator-country.operator-country",
-      "inversedBy": "country_pages"
     }
   }
 }

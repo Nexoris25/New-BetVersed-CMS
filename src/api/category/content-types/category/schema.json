@@ -41,11 +41,6 @@
       "component": "shared.fa-qs-section",
       "repeatable": false
     },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
-    },
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
@@ -63,6 +58,10 @@
       "relation": "oneToMany",
       "target": "api::article.article",
       "mappedBy": "post_category"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "short_title"
     }
   }
 }

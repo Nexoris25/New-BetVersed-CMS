@@ -17,11 +17,6 @@
     "shortTitle": {
       "type": "string"
     },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
-    },
     "leadParagraph": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
@@ -107,9 +102,25 @@
     },
     "operator_country": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::operator-country.operator-country",
-      "mappedBy": "sportsbook_review"
+      "inversedBy": "sportsbook_review"
+    },
+    "alternatives": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "sportsbook_reviews"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "shortTitle"
+    },
+    "reviewed_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "sportsbook_review"
     }
   }
 }

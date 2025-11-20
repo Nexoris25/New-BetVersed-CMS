@@ -17,11 +17,6 @@
     "short_title": {
       "type": "string"
     },
-    "public_url": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
-    },
     "lead_paragraph": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
@@ -86,11 +81,6 @@
       "target": "api::casino-review.casino-review",
       "mappedBy": "sportsbook_bonus"
     },
-    "related_casino_bonus_review": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::casino-bonus.casino-bonus"
-    },
     "reviewed_by": {
       "type": "relation",
       "relation": "manyToOne",
@@ -121,9 +111,25 @@
     },
     "operator_country": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::operator-country.operator-country",
-      "mappedBy": "sportsbook_bonus"
+      "inversedBy": "sportsbook_bonus"
+    },
+    "alternatives": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "sportsbook_bonuses"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "short_title"
+    },
+    "fact_checked_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "sportsbook_bonus"
     }
   }
 }

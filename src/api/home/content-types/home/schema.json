@@ -19,26 +19,6 @@
       "component": "content.hero-section",
       "repeatable": false
     },
-    "featured_sportsbooks": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::sportsbook-review.sportsbook-review"
-    },
-    "featured_casinos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::casino-review.casino-review"
-    },
-    "featured_casino_bonuses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::casino-bonus.casino-bonus"
-    },
-    "featured_sportsbook_bonuses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::sportsbook-bonus.sportsbook-bonus"
-    },
     "seoMeta": {
       "type": "component",
       "component": "shared.seo",
@@ -59,6 +39,26 @@
     "support_organizations": {
       "type": "component",
       "component": "unit.responsible-gambling",
+      "repeatable": true
+    },
+    "featured_countries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::country.country"
+    },
+    "featured_brands": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::operator-brand.operator-brand"
+    },
+    "featured_articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "homepage_categories": {
+      "type": "component",
+      "component": "content.homepage-category-block",
       "repeatable": true
     }
   }

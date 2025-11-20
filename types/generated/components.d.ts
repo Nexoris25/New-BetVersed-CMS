@@ -122,6 +122,26 @@ export interface ContentHighligtedBonusOffer extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentHomepageCategoryBlock extends Struct.ComponentSchema {
+  collectionName: 'components_content_homepage_category_blocks';
+  info: {
+    displayName: 'Homepage Category Block';
+  };
+  attributes: {
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
+    category_title: Schema.Attribute.String;
+    ctaButton: Schema.Attribute.Component<'shared.cta-button', false>;
+    short_description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+  };
+}
+
 export interface ContentPaymentMethod extends Struct.ComponentSchema {
   collectionName: 'components_content_payment_methods';
   info: {
@@ -711,6 +731,7 @@ declare module '@strapi/strapi' {
       'content.heading': ContentHeading;
       'content.hero-section': ContentHeroSection;
       'content.highligted-bonus-offer': ContentHighligtedBonusOffer;
+      'content.homepage-category-block': ContentHomepageCategoryBlock;
       'content.payment-method': ContentPaymentMethod;
       'content.review-summary': ContentReviewSummary;
       'content.rich-text': ContentRichText;

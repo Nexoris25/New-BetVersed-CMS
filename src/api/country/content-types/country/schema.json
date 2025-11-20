@@ -30,6 +30,12 @@
       "relation": "oneToMany",
       "target": "api::country-page.country-page",
       "mappedBy": "country"
+    },
+    "operator_countries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::operator-country.operator-country",
+      "mappedBy": "country"
     }
   }
 }

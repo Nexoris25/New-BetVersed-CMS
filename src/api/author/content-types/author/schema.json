@@ -89,6 +89,24 @@
       "type": "uid",
       "targetField": "name"
     },
+    "sportsbook_review": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-review.sportsbook-review",
+      "mappedBy": "reviewed_by"
+    },
+    "sportsbook_bonus": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sportsbook-bonus.sportsbook-bonus",
+      "mappedBy": "fact_checked_by"
+    },
+    "casino_review": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::casino-review.casino-review",
+      "mappedBy": "fact_checked_by"
+    },
     "casino_bonus": {
       "type": "relation",
       "relation": "oneToMany",

@@ -17,11 +17,6 @@
     "short_title": {
       "type": "string"
     },
-    "url_path": {
-      "type": "component",
-      "component": "shared.public-url",
-      "repeatable": false
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -91,6 +86,10 @@
       "type": "component",
       "component": "shared.seo",
       "repeatable": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "short_title"
     }
   }
 }
