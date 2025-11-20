@@ -1377,8 +1377,11 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
       Schema.Attribute.Private;
-    page_title: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    responsibleGambling: Schema.Attribute.Component<
+      'shared.responsible-gambling',
+      false
+    >;
     richText: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -1387,10 +1390,6 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
         }
       >;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
-    support_organizations: Schema.Attribute.Component<
-      'unit.responsible-gambling',
-      true
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

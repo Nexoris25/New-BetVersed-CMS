@@ -718,6 +718,13 @@ export interface UnitResponsibleGambling extends Struct.ComponentSchema {
   attributes: {
     logo: Schema.Attribute.Media<'images' | 'files'>;
     name: Schema.Attribute.String;
+    short_description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     website_url: Schema.Attribute.String;
   };
 }

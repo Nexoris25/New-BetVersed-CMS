@@ -11,9 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "page_title": {
-      "type": "string"
-    },
     "hero_section": {
       "type": "component",
       "component": "content.hero-section",
@@ -36,11 +33,6 @@
       "component": "shared.fa-qs-section",
       "repeatable": false
     },
-    "support_organizations": {
-      "type": "component",
-      "component": "unit.responsible-gambling",
-      "repeatable": true
-    },
     "featured_countries": {
       "type": "relation",
       "relation": "oneToMany",
@@ -60,6 +52,11 @@
       "type": "component",
       "component": "content.homepage-category-block",
       "repeatable": true
+    },
+    "responsibleGambling": {
+      "type": "component",
+      "component": "shared.responsible-gambling",
+      "repeatable": false
     }
   }
 }

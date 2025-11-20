@@ -18,6 +18,13 @@
         "images",
         "files"
       ]
+    },
+    "short_description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   },
   "config": {}
