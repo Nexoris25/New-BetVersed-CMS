@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payment_channels",
+  "info": {
+    "singularName": "payment-channel",
+    "pluralName": "payment-channels",
+    "displayName": "Payment Channel"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "e-Wallet",
+        "Bank Transfer",
+        "Card",
+        "USSD",
+        "Crypto",
+        "Mobile Money"
+      ]
+    },
+    "payment_methods": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "payment_channels"
+    }
+  }
+}

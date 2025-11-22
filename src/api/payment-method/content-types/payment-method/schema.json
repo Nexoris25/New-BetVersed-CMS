@@ -11,35 +11,8 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "title": {
       "type": "string"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
-    "logo": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "type": {
-      "type": "enumeration",
-      "enum": [
-        "e-wallet",
-        "Card",
-        "Bank Transfer",
-        "Crypto",
-        "Mobile Money"
-      ]
-    },
-    "isActive": {
-      "type": "boolean"
     },
     "transaction_time": {
       "type": "string"
@@ -61,6 +34,19 @@
       "relation": "manyToMany",
       "target": "api::operator-country.operator-country",
       "mappedBy": "payment_methods"
+    },
+    "payment_channels": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::payment-channel.payment-channel",
+      "mappedBy": "payment_methods"
+    },
+    "shortSummary": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
     }
   }
 }

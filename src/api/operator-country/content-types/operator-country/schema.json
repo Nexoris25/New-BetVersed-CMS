@@ -4,7 +4,7 @@
   "info": {
     "singularName": "operator-country",
     "pluralName": "operator-countries",
-    "displayName": "Operator Country"
+    "displayName": "Bookmaker"
   },
   "options": {
     "draftAndPublish": true

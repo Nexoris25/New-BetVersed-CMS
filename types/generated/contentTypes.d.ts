@@ -1428,7 +1428,7 @@ export interface ApiOperatorBrandOperatorBrand
   extends Struct.CollectionTypeSchema {
   collectionName: 'operator_brands';
   info: {
-    displayName: 'Operator Brand';
+    displayName: 'Brand';
     pluralName: 'operator-brands';
     singularName: 'operator-brand';
   };
@@ -1473,7 +1473,7 @@ export interface ApiOperatorCountryOperatorCountry
   extends Struct.CollectionTypeSchema {
   collectionName: 'operator_countries';
   info: {
-    displayName: 'Operator Country';
+    displayName: 'Bookmaker';
     pluralName: 'operator-countries';
     singularName: 'operator-country';
   };
@@ -1655,6 +1655,43 @@ export interface ApiPageNotFoundPageNotFound extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiPaymentChannelPaymentChannel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'payment_channels';
+  info: {
+    displayName: 'Payment Channel';
+    pluralName: 'payment-channels';
+    singularName: 'payment-channel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::payment-channel.payment-channel'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files'>;
+    name: Schema.Attribute.String;
+    payment_methods: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::payment-method.payment-method'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<
+      ['e-Wallet', 'Bank Transfer', 'Card', 'USSD', 'Crypto', 'Mobile Money']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPaymentMethodPaymentMethod
   extends Struct.CollectionTypeSchema {
   collectionName: 'payment_methods';
@@ -1672,27 +1709,32 @@ export interface ApiPaymentMethodPaymentMethod
       Schema.Attribute.Private;
     crypto_payments_supported: Schema.Attribute.Boolean;
     fees: Schema.Attribute.String;
-    isActive: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::payment-method.payment-method'
     > &
       Schema.Attribute.Private;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     max_payout: Schema.Attribute.String;
     min_deposit: Schema.Attribute.String;
-    name: Schema.Attribute.String;
     operator_countries: Schema.Attribute.Relation<
       'manyToMany',
       'api::operator-country.operator-country'
     >;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'name'>;
-    transaction_time: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<
-      ['e-wallet', 'Card', 'Bank Transfer', 'Crypto', 'Mobile Money']
+    payment_channels: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::payment-channel.payment-channel'
     >;
+    publishedAt: Schema.Attribute.DateTime;
+    shortSummary: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    title: Schema.Attribute.String;
+    transaction_time: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2621,6 +2663,7 @@ declare module '@strapi/strapi' {
       'api::operator-country.operator-country': ApiOperatorCountryOperatorCountry;
       'api::our-review-process.our-review-process': ApiOurReviewProcessOurReviewProcess;
       'api::page-not-found.page-not-found': ApiPageNotFoundPageNotFound;
+      'api::payment-channel.payment-channel': ApiPaymentChannelPaymentChannel;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'api::redirect.redirect': ApiRedirectRedirect;

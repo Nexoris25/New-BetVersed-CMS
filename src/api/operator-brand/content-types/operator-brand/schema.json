@@ -4,7 +4,7 @@
   "info": {
     "singularName": "operator-brand",
     "pluralName": "operator-brands",
-    "displayName": "Operator Brand"
+    "displayName": "Brand"
   },
   "options": {
     "draftAndPublish": true
