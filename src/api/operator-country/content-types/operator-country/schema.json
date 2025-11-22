@@ -26,10 +26,10 @@
       "component": "operator-country.operator-country-features",
       "repeatable": false
     },
-    "local_name": {
+    "entry_year": {
       "type": "string"
     },
-    "entry_year": {
+    "local_name": {
       "type": "string"
     },
     "operator_country_cta": {
