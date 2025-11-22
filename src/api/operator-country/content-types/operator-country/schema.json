@@ -26,10 +26,10 @@
       "component": "operator-country.operator-country-features",
       "repeatable": false
     },
-    "entry_year": {
+    "local_name": {
       "type": "string"
     },
-    "local_name": {
+    "entry_year": {
       "type": "string"
     },
     "operator_country_cta": {
@@ -84,9 +84,6 @@
       "relation": "manyToMany",
       "target": "api::operator-country.operator-country",
       "mappedBy": "operator_countries"
-    },
-    "slug": {
-      "type": "uid"
     },
     "currency": {
       "type": "string"

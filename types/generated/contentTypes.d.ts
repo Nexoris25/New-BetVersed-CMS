@@ -1543,7 +1543,6 @@ export interface ApiOperatorCountryOperatorCountry
           preset: 'defaultHtml';
         }
       >;
-    slug: Schema.Attribute.UID;
     sportsbook_bonus: Schema.Attribute.Relation<
       'oneToMany',
       'api::sportsbook-bonus.sportsbook-bonus'
