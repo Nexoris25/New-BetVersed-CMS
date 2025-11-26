@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_unit_key_metrics",
+  "info": {
+    "displayName": "Key Metrics"
+  },
+  "options": {},
+  "attributes": {
+    "payout_speed": {
+      "type": "decimal",
+      "max": 5
+    },
+    "odds_quality": {
+      "type": "decimal",
+      "max": 5
+    },
+    "platform_usability": {
+      "type": "decimal",
+      "max": 5
+    },
+    "customer_support": {
+      "type": "decimal",
+      "max": 5
+    },
+    "bonus_rating": {
+      "type": "decimal",
+      "max": 5
+    },
+    "market_coverage": {
+      "type": "decimal",
+      "max": 5
+    }
+  },
+  "config": {}
+}

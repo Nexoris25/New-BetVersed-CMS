@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_unit_how_to_tools",
+  "info": {
+    "displayName": "howToTool"
+  },
+  "options": {},
+  "attributes": {
+    "toolName": {
+      "type": "string",
+      "maxLength": 60
+    }
+  },
+  "config": {}
+}

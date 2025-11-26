@@ -5,14 +5,14 @@
   },
   "options": {},
   "attributes": {
-    "Pros": {
+    "pros": {
       "type": "component",
-      "component": "unit.label",
+      "component": "unit.pros",
       "repeatable": true
     },
-    "Cons": {
+    "cons": {
       "type": "component",
-      "component": "unit.label",
+      "component": "unit.cons",
       "repeatable": true
     }
   },

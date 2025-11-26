@@ -538,6 +538,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     >;
     faqs: Schema.Attribute.Component<'shared.fa-qs-section', false>;
     featured_image: Schema.Attribute.Media<'images' | 'files'>;
+    howToSchema: Schema.Attribute.Component<'content.how-to-schema', false>;
     lead_paragraph: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -552,13 +553,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     main_content: Schema.Attribute.DynamicZone<
-      [
-        'content.rich-text',
-        'shared.cta-button',
-        'unit.responsible-gambling',
-        'shared.pros-cons-section',
-        'content.heading',
-      ]
+      ['content.rich-text', 'content.heading']
     >;
     post_category: Schema.Attribute.Relation<
       'manyToOne',
@@ -576,6 +571,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'content.source-reference',
       true
     >;
+    tldr_summary: Schema.Attribute.Component<'shared.tldr', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -782,10 +778,6 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
       'api::operator-country.operator-country'
     >;
     page_title: Schema.Attribute.String;
-    prosConsSection: Schema.Attribute.Component<
-      'shared.pros-cons-section',
-      false
-    >;
     publishedAt: Schema.Attribute.DateTime;
     related_casino_review: Schema.Attribute.Relation<
       'oneToOne',
@@ -808,6 +800,7 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
       'oneToOne',
       'api::sportsbook-review.sportsbook-review'
     >;
+    tldr_summary: Schema.Attribute.Component<'shared.tldr', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -941,10 +934,6 @@ export interface ApiCasinoReviewCasinoReview
       'api::operator-country.operator-country'
     >;
     pageTitle: Schema.Attribute.String;
-    prosConsSection: Schema.Attribute.Component<
-      'shared.pros-cons-section',
-      false
-    >;
     publishedAt: Schema.Attribute.DateTime;
     review_summary: Schema.Attribute.Component<'content.review-summary', false>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
@@ -966,6 +955,7 @@ export interface ApiCasinoReviewCasinoReview
       'oneToOne',
       'api::sportsbook-review.sportsbook-review'
     >;
+    tldr_summary: Schema.Attribute.Component<'shared.tldr', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1970,10 +1960,6 @@ export interface ApiSportsbookBonusSportsbookBonus
       'api::operator-country.operator-country'
     >;
     page_title: Schema.Attribute.String;
-    prosConsSection: Schema.Attribute.Component<
-      'shared.pros-cons-section',
-      false
-    >;
     publishedAt: Schema.Attribute.DateTime;
     related_casino_review: Schema.Attribute.Relation<
       'oneToOne',
@@ -1996,6 +1982,7 @@ export interface ApiSportsbookBonusSportsbookBonus
       'oneToOne',
       'api::sportsbook-review.sportsbook-review'
     >;
+    tldr_summary: Schema.Attribute.Component<'shared.tldr', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2047,17 +2034,13 @@ export interface ApiSportsbookReviewSportsbookReview
     > &
       Schema.Attribute.Private;
     mainContent: Schema.Attribute.DynamicZone<
-      ['content.rich-text', 'shared.pros-cons-section', 'content.heading']
+      ['content.rich-text', 'content.heading']
     >;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
     >;
     pageTitle: Schema.Attribute.String;
-    prosConsSection: Schema.Attribute.Component<
-      'shared.pros-cons-section',
-      false
-    >;
     publishedAt: Schema.Attribute.DateTime;
     related_casino_bonus: Schema.Attribute.Relation<
       'oneToOne',
@@ -2084,6 +2067,7 @@ export interface ApiSportsbookReviewSportsbookReview
       'sportsbook.sportsbook-features',
       false
     >;
+    tldr_summary: Schema.Attribute.Component<'shared.tldr', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

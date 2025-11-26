@@ -98,11 +98,6 @@
       "component": "sportsbook.sportsbook-bonus-types",
       "repeatable": false
     },
-    "prosConsSection": {
-      "type": "component",
-      "component": "shared.pros-cons-section",
-      "repeatable": false
-    },
     "casino_bonus": {
       "type": "relation",
       "relation": "oneToOne",
@@ -130,6 +125,11 @@
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "sportsbook_bonus"
+    },
+    "tldr_summary": {
+      "type": "component",
+      "component": "shared.tldr",
+      "repeatable": false
     }
   }
 }

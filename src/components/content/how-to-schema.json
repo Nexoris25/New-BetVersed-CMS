@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_content_how_to_schemas",
+  "info": {
+    "displayName": "howToSchema"
+  },
+  "options": {},
+  "attributes": {
+    "howToTitle": {
+      "type": "string"
+    },
+    "howToDescription": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "totalTime": {
+      "type": "string"
+    },
+    "estimatedCost": {
+      "type": "string"
+    },
+    "tools": {
+      "type": "component",
+      "component": "unit.how-to-tool",
+      "repeatable": true
+    },
+    "supplies": {
+      "type": "component",
+      "component": "unit.how-to-supply",
+      "repeatable": true
+    },
+    "steps": {
+      "type": "component",
+      "component": "unit.how-to-step",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

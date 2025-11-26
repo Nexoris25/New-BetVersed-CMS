@@ -5,15 +5,44 @@
   },
   "options": {},
   "attributes": {
-    "review_summary": {
+    "overall_rating": {
+      "type": "decimal",
+      "max": 5
+    },
+    "rating_label": {
+      "type": "string"
+    },
+    "top_features": {
+      "type": "component",
+      "component": "unit.label",
+      "repeatable": true
+    },
+    "editor_verdict": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
       "options": {
         "preset": "defaultHtml"
       }
     },
-    "rating": {
-      "type": "decimal"
+    "recommended_for": {
+      "type": "component",
+      "component": "unit.label",
+      "repeatable": true
+    },
+    "not_recommended_for": {
+      "type": "component",
+      "component": "unit.label",
+      "repeatable": true
+    },
+    "highlights": {
+      "type": "component",
+      "component": "unit.key-metrics",
+      "repeatable": false
+    },
+    "prosCons": {
+      "type": "component",
+      "component": "shared.pros-cons",
+      "repeatable": false
     }
   },
   "config": {}

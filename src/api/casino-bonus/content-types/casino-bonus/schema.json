@@ -98,11 +98,6 @@
       "target": "api::author.author",
       "inversedBy": "casino_bonuses"
     },
-    "prosConsSection": {
-      "type": "component",
-      "component": "shared.pros-cons-section",
-      "repeatable": false
-    },
     "related_sportsbook_bonus": {
       "type": "relation",
       "relation": "oneToOne",
@@ -130,6 +125,11 @@
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "casino_bonus"
+    },
+    "tldr_summary": {
+      "type": "component",
+      "component": "shared.tldr",
+      "repeatable": false
     }
   }
 }

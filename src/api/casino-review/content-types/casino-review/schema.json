@@ -110,11 +110,6 @@
       "component": "casino.casino-features",
       "repeatable": false
     },
-    "prosConsSection": {
-      "type": "component",
-      "component": "shared.pros-cons-section",
-      "repeatable": false
-    },
     "operator_country": {
       "type": "relation",
       "relation": "manyToOne",
@@ -136,6 +131,11 @@
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "casino_review"
+    },
+    "tldr_summary": {
+      "type": "component",
+      "component": "shared.tldr",
+      "repeatable": false
     }
   }
 }

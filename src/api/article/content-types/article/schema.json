@@ -36,9 +36,6 @@
       "type": "dynamiczone",
       "components": [
         "content.rich-text",
-        "shared.cta-button",
-        "unit.responsible-gambling",
-        "shared.pros-cons-section",
         "content.heading"
       ]
     },
@@ -90,6 +87,16 @@
     "slug": {
       "type": "uid",
       "targetField": "short_title"
+    },
+    "howToSchema": {
+      "type": "component",
+      "component": "content.how-to-schema",
+      "repeatable": false
+    },
+    "tldr_summary": {
+      "type": "component",
+      "component": "shared.tldr",
+      "repeatable": false
     }
   }
 }

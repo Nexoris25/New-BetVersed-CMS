@@ -1,11 +1,11 @@
 {
-  "collectionName": "components_unit_labels",
+  "collectionName": "components_unit_tldr_points",
   "info": {
-    "displayName": "label"
+    "displayName": "tldr-point"
   },
   "options": {},
   "attributes": {
-    "label": {
+    "point_text": {
       "type": "string"
     }
   },

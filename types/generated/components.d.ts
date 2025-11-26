@@ -142,6 +142,28 @@ export interface ContentHomepageCategoryBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface ContentHowToSchema extends Struct.ComponentSchema {
+  collectionName: 'components_content_how_to_schemas';
+  info: {
+    displayName: 'howToSchema';
+  };
+  attributes: {
+    estimatedCost: Schema.Attribute.String;
+    howToDescription: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    howToTitle: Schema.Attribute.String;
+    steps: Schema.Attribute.Component<'unit.how-to-step', true>;
+    supplies: Schema.Attribute.Component<'unit.how-to-supply', true>;
+    tools: Schema.Attribute.Component<'unit.how-to-tool', true>;
+    totalTime: Schema.Attribute.String;
+  };
+}
+
 export interface ContentPaymentMethod extends Struct.ComponentSchema {
   collectionName: 'components_content_payment_methods';
   info: {
@@ -172,14 +194,26 @@ export interface ContentReviewSummary extends Struct.ComponentSchema {
     displayName: 'Review Summary';
   };
   attributes: {
-    rating: Schema.Attribute.Decimal;
-    review_summary: Schema.Attribute.RichText &
+    editor_verdict: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
         {
           preset: 'defaultHtml';
         }
       >;
+    highlights: Schema.Attribute.Component<'unit.key-metrics', false>;
+    not_recommended_for: Schema.Attribute.Component<'unit.label', true>;
+    overall_rating: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    prosCons: Schema.Attribute.Component<'shared.pros-cons', false>;
+    rating_label: Schema.Attribute.String;
+    recommended_for: Schema.Attribute.Component<'unit.label', true>;
+    top_features: Schema.Attribute.Component<'unit.label', true>;
   };
 }
 
@@ -522,19 +556,8 @@ export interface SharedProsCons extends Struct.ComponentSchema {
     displayName: 'prosCons';
   };
   attributes: {
-    Cons: Schema.Attribute.Component<'unit.label', true>;
-    Pros: Schema.Attribute.Component<'unit.label', true>;
-  };
-}
-
-export interface SharedProsConsSection extends Struct.ComponentSchema {
-  collectionName: 'components_shared_pros_cons_sections';
-  info: {
-    displayName: 'prosConsSection';
-  };
-  attributes: {
-    prosConsSection: Schema.Attribute.Component<'shared.pros-cons', false>;
-    title: Schema.Attribute.String;
+    cons: Schema.Attribute.Component<'unit.cons', true>;
+    pros: Schema.Attribute.Component<'unit.pros', true>;
   };
 }
 
@@ -590,23 +613,30 @@ export interface SharedSeo extends Struct.ComponentSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 60;
       }>;
+    noFollow: Schema.Attribute.Boolean;
+    noIndex: Schema.Attribute.Boolean;
     og_description: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 160;
       }>;
     og_image: Schema.Attribute.Media<'images' | 'files'>;
     og_title: Schema.Attribute.String;
-    robotsDirectives: Schema.Attribute.Enumeration<
-      [
-        'index, follow',
-        'noindex, follow',
-        'index, nofollow',
-        'noindex, nofollow',
-      ]
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'index, follow'>;
     site_name: Schema.Attribute.String;
+  };
+}
+
+export interface SharedTldr extends Struct.ComponentSchema {
+  collectionName: 'components_shared_tldrs';
+  info: {
+    displayName: 'TLDR';
+  };
+  attributes: {
+    tldr_overview: Schema.Attribute.Text;
+    tldr_points: Schema.Attribute.Component<'unit.tldr-point', true>;
+    tldr_title: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
   };
 }
 
@@ -666,6 +696,16 @@ export interface SportsbookSportsbookFeatures extends Struct.ComponentSchema {
   };
 }
 
+export interface UnitCons extends Struct.ComponentSchema {
+  collectionName: 'components_unit_cons';
+  info: {
+    displayName: 'Cons';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+  };
+}
+
 export interface UnitCurrenciesSupported extends Struct.ComponentSchema {
   collectionName: 'components_unit_currencies_supporteds';
   info: {
@@ -689,13 +729,112 @@ export interface UnitGameName extends Struct.ComponentSchema {
   };
 }
 
+export interface UnitHowToStep extends Struct.ComponentSchema {
+  collectionName: 'components_unit_how_to_steps';
+  info: {
+    displayName: 'howToStep';
+  };
+  attributes: {
+    stepDescription: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    stepImage: Schema.Attribute.Media<'images' | 'files'>;
+    stepTime: Schema.Attribute.String;
+    stepTitle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 120;
+      }>;
+  };
+}
+
+export interface UnitHowToSupply extends Struct.ComponentSchema {
+  collectionName: 'components_unit_how_to_supplies';
+  info: {
+    displayName: 'howToSupply';
+  };
+  attributes: {
+    supplyName: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+  };
+}
+
+export interface UnitHowToTool extends Struct.ComponentSchema {
+  collectionName: 'components_unit_how_to_tools';
+  info: {
+    displayName: 'howToTool';
+  };
+  attributes: {
+    toolName: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+  };
+}
+
+export interface UnitKeyMetrics extends Struct.ComponentSchema {
+  collectionName: 'components_unit_key_metrics';
+  info: {
+    displayName: 'Key Metrics';
+  };
+  attributes: {
+    bonus_rating: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    customer_support: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    market_coverage: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    odds_quality: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    payout_speed: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    platform_usability: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+  };
+}
+
 export interface UnitLabel extends Struct.ComponentSchema {
   collectionName: 'components_unit_labels';
   info: {
     displayName: 'label';
   };
   attributes: {
-    value: Schema.Attribute.String;
+    label: Schema.Attribute.String;
   };
 }
 
@@ -707,6 +846,16 @@ export interface UnitLabelAndValue extends Struct.ComponentSchema {
   attributes: {
     name: Schema.Attribute.String;
     value: Schema.Attribute.String;
+  };
+}
+
+export interface UnitPros extends Struct.ComponentSchema {
+  collectionName: 'components_unit_pros';
+  info: {
+    displayName: 'Pros';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
   };
 }
 
@@ -729,6 +878,16 @@ export interface UnitResponsibleGambling extends Struct.ComponentSchema {
   };
 }
 
+export interface UnitTldrPoint extends Struct.ComponentSchema {
+  collectionName: 'components_unit_tldr_points';
+  info: {
+    displayName: 'tldr-point';
+  };
+  attributes: {
+    point_text: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -739,6 +898,7 @@ declare module '@strapi/strapi' {
       'content.hero-section': ContentHeroSection;
       'content.highligted-bonus-offer': ContentHighligtedBonusOffer;
       'content.homepage-category-block': ContentHomepageCategoryBlock;
+      'content.how-to-schema': ContentHowToSchema;
       'content.payment-method': ContentPaymentMethod;
       'content.review-summary': ContentReviewSummary;
       'content.rich-text': ContentRichText;
@@ -766,18 +926,25 @@ declare module '@strapi/strapi' {
       'shared.faqs-item': SharedFaqsItem;
       'shared.license-detail': SharedLicenseDetail;
       'shared.pros-cons': SharedProsCons;
-      'shared.pros-cons-section': SharedProsConsSection;
       'shared.public-url': SharedPublicUrl;
       'shared.responsible-gambling': SharedResponsibleGambling;
       'shared.seo': SharedSeo;
+      'shared.tldr': SharedTldr;
       'socials.social-links': SocialsSocialLinks;
       'sportsbook.sportsbook-bonus-types': SportsbookSportsbookBonusTypes;
       'sportsbook.sportsbook-features': SportsbookSportsbookFeatures;
+      'unit.cons': UnitCons;
       'unit.currencies-supported': UnitCurrenciesSupported;
       'unit.game-name': UnitGameName;
+      'unit.how-to-step': UnitHowToStep;
+      'unit.how-to-supply': UnitHowToSupply;
+      'unit.how-to-tool': UnitHowToTool;
+      'unit.key-metrics': UnitKeyMetrics;
       'unit.label': UnitLabel;
       'unit.label-and-value': UnitLabelAndValue;
+      'unit.pros': UnitPros;
       'unit.responsible-gambling': UnitResponsibleGambling;
+      'unit.tldr-point': UnitTldrPoint;
     }
   }
 }

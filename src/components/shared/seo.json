@@ -23,17 +23,6 @@
         "files"
       ]
     },
-    "robotsDirectives": {
-      "type": "enumeration",
-      "required": true,
-      "default": "index, follow",
-      "enum": [
-        "index, follow",
-        "noindex, follow",
-        "index, nofollow",
-        "noindex, nofollow"
-      ]
-    },
     "og_title": {
       "type": "string"
     },
@@ -51,6 +40,12 @@
     },
     "site_name": {
       "type": "string"
+    },
+    "noIndex": {
+      "type": "boolean"
+    },
+    "noFollow": {
+      "type": "boolean"
     }
   },
   "config": {}

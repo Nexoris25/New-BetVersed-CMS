@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_unit_how_to_supplies",
+  "info": {
+    "displayName": "howToSupply"
+  },
+  "options": {},
+  "attributes": {
+    "supplyName": {
+      "type": "string",
+      "maxLength": 60
+    }
+  },
+  "config": {}
+}

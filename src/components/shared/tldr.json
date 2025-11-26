@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_tldrs",
+  "info": {
+    "displayName": "TLDR"
+  },
+  "options": {},
+  "attributes": {
+    "tldr_title": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "tldr_points": {
+      "type": "component",
+      "component": "unit.tldr-point",
+      "repeatable": true
+    },
+    "tldr_overview": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
