@@ -202,7 +202,7 @@ export interface ContentReviewSummary extends Struct.ComponentSchema {
         }
       >;
     highlights: Schema.Attribute.Component<'unit.key-metrics', false>;
-    not_recommended_for: Schema.Attribute.Component<'unit.label', true>;
+    not_recommended_for: Schema.Attribute.Component<'unit.label', false>;
     overall_rating: Schema.Attribute.Decimal &
       Schema.Attribute.SetMinMax<
         {
@@ -212,8 +212,8 @@ export interface ContentReviewSummary extends Struct.ComponentSchema {
       >;
     prosCons: Schema.Attribute.Component<'shared.pros-cons', false>;
     rating_label: Schema.Attribute.String;
-    recommended_for: Schema.Attribute.Component<'unit.label', true>;
-    top_features: Schema.Attribute.Component<'unit.label', true>;
+    recommended_for: Schema.Attribute.Component<'unit.label', false>;
+    top_features: Schema.Attribute.Component<'unit.label', false>;
   };
 }
 
@@ -834,7 +834,7 @@ export interface UnitLabel extends Struct.ComponentSchema {
     displayName: 'label';
   };
   attributes: {
-    label: Schema.Attribute.String;
+    value: Schema.Attribute.Component<'unit.value', true>;
   };
 }
 
@@ -885,6 +885,16 @@ export interface UnitTldrPoint extends Struct.ComponentSchema {
   };
   attributes: {
     point_text: Schema.Attribute.String;
+  };
+}
+
+export interface UnitValue extends Struct.ComponentSchema {
+  collectionName: 'components_unit_values';
+  info: {
+    displayName: 'value';
+  };
+  attributes: {
+    value: Schema.Attribute.String;
   };
 }
 
@@ -945,6 +955,7 @@ declare module '@strapi/strapi' {
       'unit.pros': UnitPros;
       'unit.responsible-gambling': UnitResponsibleGambling;
       'unit.tldr-point': UnitTldrPoint;
+      'unit.value': UnitValue;
     }
   }
 }

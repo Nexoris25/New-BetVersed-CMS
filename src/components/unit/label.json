@@ -5,8 +5,10 @@
   },
   "options": {},
   "attributes": {
-    "label": {
-      "type": "string"
+    "value": {
+      "type": "component",
+      "component": "unit.value",
+      "repeatable": true
     }
   },
   "config": {}

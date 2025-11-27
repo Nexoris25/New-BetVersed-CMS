@@ -12,27 +12,12 @@
     "rating_label": {
       "type": "string"
     },
-    "top_features": {
-      "type": "component",
-      "component": "unit.label",
-      "repeatable": true
-    },
     "editor_verdict": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",
       "options": {
         "preset": "defaultHtml"
       }
-    },
-    "recommended_for": {
-      "type": "component",
-      "component": "unit.label",
-      "repeatable": true
-    },
-    "not_recommended_for": {
-      "type": "component",
-      "component": "unit.label",
-      "repeatable": true
     },
     "highlights": {
       "type": "component",
@@ -42,6 +27,21 @@
     "prosCons": {
       "type": "component",
       "component": "shared.pros-cons",
+      "repeatable": false
+    },
+    "top_features": {
+      "type": "component",
+      "component": "unit.label",
+      "repeatable": false
+    },
+    "recommended_for": {
+      "type": "component",
+      "component": "unit.label",
+      "repeatable": false
+    },
+    "not_recommended_for": {
+      "type": "component",
+      "component": "unit.label",
       "repeatable": false
     }
   },
