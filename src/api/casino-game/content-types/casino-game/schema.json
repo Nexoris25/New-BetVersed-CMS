@@ -14,10 +14,6 @@
     "title": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
     "game_type": {
       "type": "enumeration",
       "enum": [
@@ -64,12 +60,6 @@
         "Adjustable"
       ]
     },
-    "software_provider": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::software-provider.software-provider",
-      "inversedBy": "casino_game"
-    },
     "casino_reviews": {
       "type": "relation",
       "relation": "manyToMany",
@@ -78,6 +68,12 @@
     },
     "rtp": {
       "type": "decimal"
+    },
+    "software_provider": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::software-provider.software-provider",
+      "inversedBy": "casino_game"
     }
   }
 }

@@ -868,9 +868,8 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     rtp: Schema.Attribute.Decimal;
-    slug: Schema.Attribute.UID<'title'>;
     software_provider: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'api::software-provider.software-provider'
     >;
     title: Schema.Attribute.String;
@@ -1886,7 +1885,11 @@ export interface ApiSoftwareProviderSoftwareProvider
   };
   attributes: {
     casino_game: Schema.Attribute.Relation<
-      'oneToOne',
+      'oneToMany',
+      'api::casino-game.casino-game'
+    >;
+    casino_games: Schema.Attribute.Relation<
+      'oneToMany',
       'api::casino-game.casino-game'
     >;
     casino_reviews: Schema.Attribute.Relation<
