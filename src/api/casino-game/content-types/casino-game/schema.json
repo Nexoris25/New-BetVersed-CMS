@@ -22,18 +22,12 @@
       "type": "enumeration",
       "enum": [
         "Slots",
-        "Sackpot Slots",
+        "Live Dealer",
         "Table Games",
-        "Roulette",
-        "Blackjack",
-        "Baccarat",
-        "Poker",
-        "Live Casino",
-        "Crash Games",
-        "Instants",
-        "Keno",
-        "Lottery",
-        "Bingo"
+        "Video Poker",
+        "Crash & Instant Games",
+        "Fishing & Arcade",
+        "Virtual Sports"
       ]
     },
     "rtp": {

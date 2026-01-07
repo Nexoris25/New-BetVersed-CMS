@@ -828,18 +828,12 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
     game_type: Schema.Attribute.Enumeration<
       [
         'Slots',
-        'Sackpot Slots',
+        'Live Dealer',
         'Table Games',
-        'Roulette',
-        'Blackjack',
-        'Baccarat',
-        'Poker',
-        'Live Casino',
-        'Crash Games',
-        'Instants',
-        'Keno',
-        'Lottery',
-        'Bingo',
+        'Video Poker',
+        'Crash & Instant Games',
+        'Fishing & Arcade',
+        'Virtual Sports',
       ]
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
