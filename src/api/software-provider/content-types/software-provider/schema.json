@@ -24,9 +24,9 @@
     },
     "casino_games": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::casino-game.casino-game",
-      "mappedBy": "software_provider"
+      "mappedBy": "software_providers"
     },
     "casino_reviews": {
       "type": "relation",

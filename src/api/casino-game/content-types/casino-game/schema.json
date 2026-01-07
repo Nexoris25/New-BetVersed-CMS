@@ -37,13 +37,20 @@
       "type": "enumeration",
       "enum": [
         "Low",
+        "Low–Medium",
         "Medium",
-        "High"
+        "Medium–High",
+        "Medium–Very High",
+        "High",
+        "High–Very High",
+        "Very High",
+        "Adjustable",
+        "Player-dependent"
       ]
     },
-    "software_provider": {
+    "software_providers": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::software-provider.software-provider",
       "inversedBy": "casino_games"
     },

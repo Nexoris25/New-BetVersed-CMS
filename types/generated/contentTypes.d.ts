@@ -845,15 +845,28 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     rtp: Schema.Attribute.Decimal;
     slug: Schema.Attribute.UID<'title'>;
-    software_provider: Schema.Attribute.Relation<
-      'manyToOne',
+    software_providers: Schema.Attribute.Relation<
+      'manyToMany',
       'api::software-provider.software-provider'
     >;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    volatility: Schema.Attribute.Enumeration<['Low', 'Medium', 'High']>;
+    volatility: Schema.Attribute.Enumeration<
+      [
+        'Low',
+        'Low\u2013Medium',
+        'Medium',
+        'Medium\u2013High',
+        'Medium\u2013Very High',
+        'High',
+        'High\u2013Very High',
+        'Very High',
+        'Adjustable',
+        'Player-dependent',
+      ]
+    >;
   };
 }
 
@@ -1860,7 +1873,7 @@ export interface ApiSoftwareProviderSoftwareProvider
   };
   attributes: {
     casino_games: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::casino-game.casino-game'
     >;
     casino_reviews: Schema.Attribute.Relation<
