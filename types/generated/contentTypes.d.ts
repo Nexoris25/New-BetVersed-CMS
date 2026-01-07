@@ -827,13 +827,37 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     game_type: Schema.Attribute.Enumeration<
       [
-        'Slots',
-        'Live Dealer',
-        'Table Games',
-        'Video Poker',
-        'Crash & Instant Games',
-        'Fishing & Arcade',
-        'Virtual Sports',
+        'Video Slots',
+        'Classic Slots',
+        'Megaways Slots',
+        'Jackpot Slots',
+        'Grid / Cluster Slots',
+        'Buy Feature Slots',
+        'Multiplier Slots',
+        'Slingo Slots',
+        'Live Blackjack',
+        'Live Roulette',
+        'Live Baccarat',
+        'Live Multiplier Tables',
+        'Live Game Shows',
+        'Live Dice & Regional',
+        'RNG Blackjack',
+        'RNG Roulette',
+        'RNG Baccarat',
+        'Specialty Table Games',
+        'Classic Video Poker',
+        'Bonus Video Poker',
+        'Crash Games',
+        'Mines',
+        'Plinko',
+        'Dice / Limbo / Hi-Lo',
+        'Fish Shooting',
+        'Skill Arcade Games',
+        'Scratch Cards',
+        'Virtual Football',
+        'Virtual Horse',
+        'Greyhound Racing',
+        'Other Virtual Sports',
       ]
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -843,10 +867,10 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    rtp: Schema.Attribute.String;
+    rtp: Schema.Attribute.Decimal;
     slug: Schema.Attribute.UID<'title'>;
-    software_providers: Schema.Attribute.Relation<
-      'manyToMany',
+    software_provider: Schema.Attribute.Relation<
+      'oneToOne',
       'api::software-provider.software-provider'
     >;
     title: Schema.Attribute.String;
@@ -854,18 +878,7 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     volatility: Schema.Attribute.Enumeration<
-      [
-        'Low',
-        'Low\u2013Medium',
-        'Medium',
-        'Medium\u2013High',
-        'Medium\u2013Very High',
-        'High',
-        'High\u2013Very High',
-        'Very High',
-        'Adjustable',
-        'Player-dependent',
-      ]
+      ['Low', 'Medium', 'High', 'Very High', 'Adjustable']
     >;
   };
 }
@@ -1872,8 +1885,8 @@ export interface ApiSoftwareProviderSoftwareProvider
     draftAndPublish: true;
   };
   attributes: {
-    casino_games: Schema.Attribute.Relation<
-      'manyToMany',
+    casino_game: Schema.Attribute.Relation<
+      'oneToOne',
       'api::casino-game.casino-game'
     >;
     casino_reviews: Schema.Attribute.Relation<

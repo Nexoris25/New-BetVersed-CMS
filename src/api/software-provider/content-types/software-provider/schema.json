@@ -22,11 +22,11 @@
         "files"
       ]
     },
-    "casino_games": {
+    "casino_game": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToOne",
       "target": "api::casino-game.casino-game",
-      "mappedBy": "software_providers"
+      "mappedBy": "software_provider"
     },
     "casino_reviews": {
       "type": "relation",

@@ -21,35 +21,54 @@
     "game_type": {
       "type": "enumeration",
       "enum": [
-        "Slots",
-        "Live Dealer",
-        "Table Games",
-        "Video Poker",
-        "Crash & Instant Games",
-        "Fishing & Arcade",
-        "Virtual Sports"
+        "Video Slots",
+        "Classic Slots",
+        "Megaways Slots",
+        "Jackpot Slots",
+        "Grid / Cluster Slots",
+        "Buy Feature Slots",
+        "Multiplier Slots",
+        "Slingo Slots",
+        "Live Blackjack",
+        "Live Roulette",
+        "Live Baccarat",
+        "Live Multiplier Tables",
+        "Live Game Shows",
+        "Live Dice & Regional",
+        "RNG Blackjack",
+        "RNG Roulette",
+        "RNG Baccarat",
+        "Specialty Table Games",
+        "Classic Video Poker",
+        "Bonus Video Poker",
+        "Crash Games",
+        "Mines",
+        "Plinko",
+        "Dice / Limbo / Hi-Lo",
+        "Fish Shooting",
+        "Skill Arcade Games",
+        "Scratch Cards",
+        "Virtual Football",
+        "Virtual Horse",
+        "Greyhound Racing",
+        "Other Virtual Sports"
       ]
     },
     "volatility": {
       "type": "enumeration",
       "enum": [
         "Low",
-        "Low–Medium",
         "Medium",
-        "Medium–High",
-        "Medium–Very High",
         "High",
-        "High–Very High",
         "Very High",
-        "Adjustable",
-        "Player-dependent"
+        "Adjustable"
       ]
     },
-    "software_providers": {
+    "software_provider": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToOne",
       "target": "api::software-provider.software-provider",
-      "inversedBy": "casino_games"
+      "inversedBy": "casino_game"
     },
     "casino_reviews": {
       "type": "relation",
@@ -58,7 +77,7 @@
       "inversedBy": "casino_games"
     },
     "rtp": {
-      "type": "string"
+      "type": "decimal"
     }
   }
 }
