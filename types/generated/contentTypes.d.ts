@@ -843,7 +843,7 @@ export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    rtp: Schema.Attribute.Decimal;
+    rtp: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'>;
     software_providers: Schema.Attribute.Relation<
       'manyToMany',
