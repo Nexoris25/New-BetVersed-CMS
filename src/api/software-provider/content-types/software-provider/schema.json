@@ -22,18 +22,13 @@
         "files"
       ]
     },
-    "casino_games": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::casino-game.casino-game"
-    },
     "casino_reviews": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::casino-review.casino-review",
       "mappedBy": "software_providers"
     },
-    "casino_game": {
+    "casino_games": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::casino-game.casino-game",

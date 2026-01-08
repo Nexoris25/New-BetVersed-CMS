@@ -810,7 +810,7 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
 export interface ApiCasinoGameCasinoGame extends Struct.CollectionTypeSchema {
   collectionName: 'casino_games';
   info: {
-    displayName: 'Casino Game';
+    displayName: 'Casino Games';
     pluralName: 'casino-games';
     singularName: 'casino-game';
   };
@@ -1884,10 +1884,6 @@ export interface ApiSoftwareProviderSoftwareProvider
     draftAndPublish: true;
   };
   attributes: {
-    casino_game: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::casino-game.casino-game'
-    >;
     casino_games: Schema.Attribute.Relation<
       'oneToMany',
       'api::casino-game.casino-game'

@@ -4,7 +4,7 @@
   "info": {
     "singularName": "casino-game",
     "pluralName": "casino-games",
-    "displayName": "Casino Game"
+    "displayName": "Casino Games"
   },
   "options": {
     "draftAndPublish": true
@@ -73,7 +73,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::software-provider.software-provider",
-      "inversedBy": "casino_game"
+      "inversedBy": "casino_games"
     }
   }
 }
