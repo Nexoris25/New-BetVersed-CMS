@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_unit_nav_dropdown_groups",
+  "info": {
+    "displayName": "nav-dropdown-group"
+  },
+  "options": {},
+  "attributes": {
+    "groupLabel": {
+      "type": "string"
+    },
+    "groupUrl": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "component": "shared.nav-link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

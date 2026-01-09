@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_navigation_navbar_links",
+  "collectionName": "components_shared_nav_links",
   "info": {
-    "displayName": "Navbar Link"
+    "displayName": "nav-link"
   },
   "options": {},
   "attributes": {

@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_shared_primary_nav_items",
+  "info": {
+    "displayName": "primary-nav-item"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "mega_menu",
+        "simple_dropdown",
+        "direct_link"
+      ]
+    },
+    "dropdownGroups": {
+      "type": "component",
+      "component": "unit.nav-dropdown-group",
+      "repeatable": true
+    },
+    "footerColumns": {
+      "type": "component",
+      "component": "unit.nav-dropdown-group",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

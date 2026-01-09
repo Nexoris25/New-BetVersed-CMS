@@ -12,10 +12,13 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "game_type": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "Video Slots",
         "Classic Slots",
@@ -52,12 +55,14 @@
     },
     "volatility": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "Low",
         "Medium",
         "High",
         "Very High",
-        "Adjustable"
+        "Adjustable",
+        "Player-Dependent"
       ]
     },
     "casino_reviews": {
@@ -67,7 +72,8 @@
       "inversedBy": "casino_games"
     },
     "rtp": {
-      "type": "decimal"
+      "type": "decimal",
+      "required": true
     },
     "software_provider": {
       "type": "relation",

@@ -398,52 +398,6 @@ export interface GlobalMaintenanceMode extends Struct.ComponentSchema {
   };
 }
 
-export interface NavigationNavbarDropdown extends Struct.ComponentSchema {
-  collectionName: 'components_navigation_navbar_dropdowns';
-  info: {
-    displayName: 'Navbar Dropdown';
-  };
-  attributes: {
-    links: Schema.Attribute.Component<'navigation.navbar-link', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface NavigationNavbarGroup extends Struct.ComponentSchema {
-  collectionName: 'components_navigation_navbar_groups';
-  info: {
-    displayName: 'Navbar Group';
-  };
-  attributes: {
-    items: Schema.Attribute.Component<'navigation.navbar-item', true>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface NavigationNavbarItem extends Struct.ComponentSchema {
-  collectionName: 'components_navigation_navbar_items';
-  info: {
-    displayName: 'Navbar Item';
-  };
-  attributes: {
-    dropdown: Schema.Attribute.Component<'navigation.navbar-dropdown', false>;
-    label: Schema.Attribute.String;
-    link: Schema.Attribute.Component<'navigation.navbar-link', false>;
-    type: Schema.Attribute.Enumeration<['link', 'dropdown']>;
-  };
-}
-
-export interface NavigationNavbarLink extends Struct.ComponentSchema {
-  collectionName: 'components_navigation_navbar_links';
-  info: {
-    displayName: 'Navbar Link';
-  };
-  attributes: {
-    label: Schema.Attribute.String;
-    url: Schema.Attribute.String;
-  };
-}
-
 export interface OperatorCountryOperatorCountryFeatures
   extends Struct.ComponentSchema {
   collectionName: 'components_operator_country_operator_country_features';
@@ -547,6 +501,33 @@ export interface SharedLicenseDetail extends Struct.ComponentSchema {
     >;
     regulator: Schema.Attribute.String;
     regulator_website: Schema.Attribute.String;
+  };
+}
+
+export interface SharedNavLink extends Struct.ComponentSchema {
+  collectionName: 'components_shared_nav_links';
+  info: {
+    displayName: 'nav-link';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface SharedPrimaryNavItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_primary_nav_items';
+  info: {
+    displayName: 'primary-nav-item';
+  };
+  attributes: {
+    dropdownGroups: Schema.Attribute.Component<'unit.nav-dropdown-group', true>;
+    footerColumns: Schema.Attribute.Component<'unit.nav-dropdown-group', true>;
+    label: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<
+      ['mega_menu', 'simple_dropdown', 'direct_link']
+    >;
+    url: Schema.Attribute.String;
   };
 }
 
@@ -849,6 +830,18 @@ export interface UnitLabelAndValue extends Struct.ComponentSchema {
   };
 }
 
+export interface UnitNavDropdownGroup extends Struct.ComponentSchema {
+  collectionName: 'components_unit_nav_dropdown_groups';
+  info: {
+    displayName: 'nav-dropdown-group';
+  };
+  attributes: {
+    groupLabel: Schema.Attribute.String;
+    groupUrl: Schema.Attribute.String;
+    links: Schema.Attribute.Component<'shared.nav-link', true>;
+  };
+}
+
 export interface UnitPros extends Struct.ComponentSchema {
   collectionName: 'components_unit_pros';
   info: {
@@ -924,10 +917,6 @@ declare module '@strapi/strapi' {
       'global.global-ur-ls-and-locale-settings': GlobalGlobalUrLsAndLocaleSettings;
       'global.legal-and-compliance': GlobalLegalAndCompliance;
       'global.maintenance-mode': GlobalMaintenanceMode;
-      'navigation.navbar-dropdown': NavigationNavbarDropdown;
-      'navigation.navbar-group': NavigationNavbarGroup;
-      'navigation.navbar-item': NavigationNavbarItem;
-      'navigation.navbar-link': NavigationNavbarLink;
       'operator-country.operator-country-features': OperatorCountryOperatorCountryFeatures;
       'shared.contact-detail': SharedContactDetail;
       'shared.contact-form': SharedContactForm;
@@ -935,6 +924,8 @@ declare module '@strapi/strapi' {
       'shared.fa-qs-section': SharedFaQsSection;
       'shared.faqs-item': SharedFaqsItem;
       'shared.license-detail': SharedLicenseDetail;
+      'shared.nav-link': SharedNavLink;
+      'shared.primary-nav-item': SharedPrimaryNavItem;
       'shared.pros-cons': SharedProsCons;
       'shared.public-url': SharedPublicUrl;
       'shared.responsible-gambling': SharedResponsibleGambling;
@@ -952,6 +943,7 @@ declare module '@strapi/strapi' {
       'unit.key-metrics': UnitKeyMetrics;
       'unit.label': UnitLabel;
       'unit.label-and-value': UnitLabelAndValue;
+      'unit.nav-dropdown-group': UnitNavDropdownGroup;
       'unit.pros': UnitPros;
       'unit.responsible-gambling': UnitResponsibleGambling;
       'unit.tldr-point': UnitTldrPoint;
