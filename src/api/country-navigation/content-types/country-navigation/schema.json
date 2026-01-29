@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "country_navigations",
+  "info": {
+    "singularName": "country-navigation",
+    "pluralName": "country-navigations",
+    "displayName": "Country Navigation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "country": {
+      "type": "component",
+      "component": "shared.country-specific-navigation",
+      "repeatable": false
+    }
+  }
+}

@@ -447,6 +447,17 @@ export interface SharedContactForm extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCountrySpecificNavigation
+  extends Struct.ComponentSchema {
+  collectionName: 'components_shared_country_specific_navigations';
+  info: {
+    displayName: 'country_specific_navigation';
+  };
+  attributes: {
+    country: Schema.Attribute.Component<'unit.country-nav', true>;
+  };
+}
+
 export interface SharedCtaButton extends Struct.ComponentSchema {
   collectionName: 'components_shared_cta_buttons';
   info: {
@@ -522,7 +533,6 @@ export interface SharedPrimaryNavItem extends Struct.ComponentSchema {
   };
   attributes: {
     dropdownGroups: Schema.Attribute.Component<'unit.nav-dropdown-group', true>;
-    footerColumns: Schema.Attribute.Component<'unit.nav-dropdown-group', true>;
     label: Schema.Attribute.String;
     type: Schema.Attribute.Enumeration<
       ['mega_menu', 'simple_dropdown', 'direct_link']
@@ -627,7 +637,6 @@ export interface SocialsSocialLinks extends Struct.ComponentSchema {
     displayName: 'SocialLinks';
   };
   attributes: {
-    Icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     Platform: Schema.Attribute.String;
     URL: Schema.Attribute.String;
   };
@@ -684,6 +693,20 @@ export interface UnitCons extends Struct.ComponentSchema {
   };
   attributes: {
     label: Schema.Attribute.String;
+  };
+}
+
+export interface UnitCountryNav extends Struct.ComponentSchema {
+  collectionName: 'components_unit_country_navs';
+  info: {
+    displayName: 'country-nav';
+  };
+  attributes: {
+    country: Schema.Attribute.String;
+    top_navigation: Schema.Attribute.Component<
+      'shared.primary-nav-item',
+      false
+    >;
   };
 }
 
@@ -920,6 +943,7 @@ declare module '@strapi/strapi' {
       'operator-country.operator-country-features': OperatorCountryOperatorCountryFeatures;
       'shared.contact-detail': SharedContactDetail;
       'shared.contact-form': SharedContactForm;
+      'shared.country-specific-navigation': SharedCountrySpecificNavigation;
       'shared.cta-button': SharedCtaButton;
       'shared.fa-qs-section': SharedFaQsSection;
       'shared.faqs-item': SharedFaqsItem;
@@ -935,6 +959,7 @@ declare module '@strapi/strapi' {
       'sportsbook.sportsbook-bonus-types': SportsbookSportsbookBonusTypes;
       'sportsbook.sportsbook-features': SportsbookSportsbookFeatures;
       'unit.cons': UnitCons;
+      'unit.country-nav': UnitCountryNav;
       'unit.currencies-supported': UnitCurrenciesSupported;
       'unit.game-name': UnitGameName;
       'unit.how-to-step': UnitHowToStep;

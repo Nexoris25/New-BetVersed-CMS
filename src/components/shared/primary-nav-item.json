@@ -23,11 +23,6 @@
       "type": "component",
       "component": "unit.nav-dropdown-group",
       "repeatable": true
-    },
-    "footerColumns": {
-      "type": "component",
-      "component": "unit.nav-dropdown-group",
-      "repeatable": true
     }
   },
   "config": {}

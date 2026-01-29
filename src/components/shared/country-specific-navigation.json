@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_country_specific_navigations",
+  "info": {
+    "displayName": "country_specific_navigation"
+  },
+  "options": {},
+  "attributes": {
+    "country": {
+      "type": "component",
+      "component": "unit.country-nav",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

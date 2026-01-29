@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_unit_country_navs",
+  "info": {
+    "displayName": "country-nav"
+  },
+  "options": {},
+  "attributes": {
+    "country": {
+      "type": "string"
+    },
+    "top_navigation": {
+      "type": "component",
+      "component": "shared.primary-nav-item",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1371,6 +1371,38 @@ export interface ApiCookiePolicyCookiePolicy extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCountryNavigationCountryNavigation
+  extends Struct.SingleTypeSchema {
+  collectionName: 'country_navigations';
+  info: {
+    displayName: 'Country Navigation';
+    pluralName: 'country-navigations';
+    singularName: 'country-navigation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.Component<
+      'shared.country-specific-navigation',
+      false
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::country-navigation.country-navigation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCountryPageCountryPage extends Struct.CollectionTypeSchema {
   collectionName: 'country_pages';
   info: {
@@ -3136,6 +3168,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::contact-us.contact-us': ApiContactUsContactUs;
       'api::cookie-policy.cookie-policy': ApiCookiePolicyCookiePolicy;
+      'api::country-navigation.country-navigation': ApiCountryNavigationCountryNavigation;
       'api::country-page.country-page': ApiCountryPageCountryPage;
       'api::country.country': ApiCountryCountry;
       'api::editorial-policy.editorial-policy': ApiEditorialPolicyEditorialPolicy;
