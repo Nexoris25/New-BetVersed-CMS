@@ -516,6 +516,57 @@ export interface ApiAffiliateDisclosureAffiliateDisclosure
   };
 }
 
+export interface ApiAffiliateLinkAffiliateLink
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'affiliate_links';
+  info: {
+    displayName: 'Affiliate Link';
+    pluralName: 'affiliate-links';
+    singularName: 'affiliate-link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bookmaker: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::operator-country.operator-country'
+    >;
+    country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
+    country_mode: Schema.Attribute.Enumeration<['specific', 'international']> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::affiliate-link.affiliate-link'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    priority: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 100;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<100>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    target_url: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    verticals: Schema.Attribute.Relation<'oneToMany', 'api::vertical.vertical'>;
+  };
+}
+
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
@@ -1517,6 +1568,10 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    affiliate_links: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::affiliate-link.affiliate-link'
+    >;
     country_pages: Schema.Attribute.Relation<
       'oneToMany',
       'api::country-page.country-page'
@@ -1715,8 +1770,22 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
       'global.analytics-and-tracking',
       false
     >;
+    app_review_ctas: Schema.Attribute.Component<'unit.global-cta-pair', false>;
+    bookmaker_review_ctas: Schema.Attribute.Component<
+      'unit.global-cta-pair',
+      false
+    > &
+      Schema.Attribute.Required;
     brand_information: Schema.Attribute.Component<
       'global.brand-information',
+      false
+    >;
+    casino_bonus_review_ctas: Schema.Attribute.Component<
+      'unit.global-cta-pair',
+      false
+    >;
+    casino_review_ctas: Schema.Attribute.Component<
+      'unit.global-cta-pair',
       false
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -1752,6 +1821,10 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     social_media_links: Schema.Attribute.Component<
       'socials.social-links',
       true
+    >;
+    sports_bonus_review_ctas: Schema.Attribute.Component<
+      'unit.global-cta-pair',
+      false
     >;
     supportOrganizations: Schema.Attribute.Component<
       'unit.responsible-gambling',
@@ -1817,6 +1890,59 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
+  collectionName: 'messages';
+  info: {
+    displayName: 'Message';
+    pluralName: 'messages';
+    singularName: 'message';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    bonus_source: Schema.Attribute.Enumeration<
+      ['primary_bonus', 'selected_bonus']
+    >;
+    country_mode: Schema.Attribute.Enumeration<['all', 'specific']> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    internal_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::message.message'
+    > &
+      Schema.Attribute.Private;
+    message_body: Schema.Attribute.Text & Schema.Attribute.Required;
+    message_title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    message_type: Schema.Attribute.Enumeration<
+      ['bonus_popup', 'inline_notice', 'tooltip', 'modal', 'banner']
+    > &
+      Schema.Attribute.Required;
+    page_types: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::page-type.page-type'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    use_external_cta: Schema.Attribute.Boolean;
+    verticals: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::vertical.vertical'
+    >;
+  };
+}
+
 export interface ApiOperatorBrandOperatorBrand
   extends Struct.CollectionTypeSchema {
   collectionName: 'operator_brands';
@@ -1874,6 +2000,10 @@ export interface ApiOperatorCountryOperatorCountry
     draftAndPublish: true;
   };
   attributes: {
+    affiliate_links: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::affiliate-link.affiliate-link'
+    >;
     alternatives: Schema.Attribute.Relation<
       'manyToMany',
       'api::operator-country.operator-country'
@@ -2041,6 +2171,38 @@ export interface ApiPageNotFoundPageNotFound extends Struct.SingleTypeSchema {
     seoMeta: Schema.Attribute.Component<'shared.seo', false>;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPageTypePageType extends Struct.CollectionTypeSchema {
+  collectionName: 'page_types';
+  info: {
+    displayName: 'Page Type';
+    pluralName: 'page-types';
+    singularName: 'page-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-type.page-type'
+    > &
+      Schema.Attribute.Private;
+    messages: Schema.Attribute.Relation<'manyToMany', 'api::message.message'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2679,6 +2841,42 @@ export interface ApiTermsAndConditionTermsAndCondition
   };
 }
 
+export interface ApiVerticalVertical extends Struct.CollectionTypeSchema {
+  collectionName: 'verticals';
+  info: {
+    displayName: 'Vertical';
+    pluralName: 'verticals';
+    singularName: 'vertical';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    affiliate_link: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::affiliate-link.affiliate-link'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vertical.vertical'
+    > &
+      Schema.Attribute.Private;
+    messages: Schema.Attribute.Relation<'manyToMany', 'api::message.message'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -2936,8 +3134,8 @@ export interface PluginUploadFile extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    alternativeText: Schema.Attribute.String;
-    caption: Schema.Attribute.String;
+    alternativeText: Schema.Attribute.Text;
+    caption: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2961,7 +3159,7 @@ export interface PluginUploadFile extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     mime: Schema.Attribute.String & Schema.Attribute.Required;
     name: Schema.Attribute.String & Schema.Attribute.Required;
-    previewUrl: Schema.Attribute.String;
+    previewUrl: Schema.Attribute.Text;
     provider: Schema.Attribute.String & Schema.Attribute.Required;
     provider_metadata: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
@@ -2970,7 +3168,7 @@ export interface PluginUploadFile extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    url: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.Text & Schema.Attribute.Required;
     width: Schema.Attribute.Integer;
   };
 }
@@ -3191,6 +3389,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about-us.about-us': ApiAboutUsAboutUs;
       'api::affiliate-disclosure.affiliate-disclosure': ApiAffiliateDisclosureAffiliateDisclosure;
+      'api::affiliate-link.affiliate-link': ApiAffiliateLinkAffiliateLink;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::business-model.business-model': ApiBusinessModelBusinessModel;
@@ -3208,10 +3407,12 @@ declare module '@strapi/strapi' {
       'api::global-navigation.global-navigation': ApiGlobalNavigationGlobalNavigation;
       'api::global-setting.global-setting': ApiGlobalSettingGlobalSetting;
       'api::home.home': ApiHomeHome;
+      'api::message.message': ApiMessageMessage;
       'api::operator-brand.operator-brand': ApiOperatorBrandOperatorBrand;
       'api::operator-country.operator-country': ApiOperatorCountryOperatorCountry;
       'api::our-review-process.our-review-process': ApiOurReviewProcessOurReviewProcess;
       'api::page-not-found.page-not-found': ApiPageNotFoundPageNotFound;
+      'api::page-type.page-type': ApiPageTypePageType;
       'api::payment-channel.payment-channel': ApiPaymentChannelPaymentChannel;
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
@@ -3221,6 +3422,7 @@ declare module '@strapi/strapi' {
       'api::sportsbook-bonus.sportsbook-bonus': ApiSportsbookBonusSportsbookBonus;
       'api::sportsbook-review.sportsbook-review': ApiSportsbookReviewSportsbookReview;
       'api::terms-and-condition.terms-and-condition': ApiTermsAndConditionTermsAndCondition;
+      'api::vertical.vertical': ApiVerticalVertical;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

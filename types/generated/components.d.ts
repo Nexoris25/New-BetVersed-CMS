@@ -733,6 +733,35 @@ export interface UnitGameName extends Struct.ComponentSchema {
   };
 }
 
+export interface UnitGlobalCta extends Struct.ComponentSchema {
+  collectionName: 'components_unit_global_ctas';
+  info: {
+    displayName: 'Global CTA';
+  };
+  attributes: {
+    action_type: Schema.Attribute.Enumeration<['internal', 'external']>;
+    is_enabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    open_in_new_tab: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    style_variant: Schema.Attribute.Enumeration<
+      ['primary', 'secondary', 'ghost']
+    >;
+  };
+}
+
+export interface UnitGlobalCtaPair extends Struct.ComponentSchema {
+  collectionName: 'components_unit_global_cta_pairs';
+  info: {
+    displayName: 'Global CTA Pair';
+  };
+  attributes: {
+    external_cta: Schema.Attribute.Component<'unit.global-cta', false>;
+    internal_cta: Schema.Attribute.Component<'unit.global-cta', false> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface UnitHowToStep extends Struct.ComponentSchema {
   collectionName: 'components_unit_how_to_steps';
   info: {
@@ -962,6 +991,8 @@ declare module '@strapi/strapi' {
       'unit.country-nav': UnitCountryNav;
       'unit.currencies-supported': UnitCurrenciesSupported;
       'unit.game-name': UnitGameName;
+      'unit.global-cta': UnitGlobalCta;
+      'unit.global-cta-pair': UnitGlobalCtaPair;
       'unit.how-to-step': UnitHowToStep;
       'unit.how-to-supply': UnitHowToSupply;
       'unit.how-to-tool': UnitHowToTool;

@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "singularName": "message",
+    "pluralName": "messages",
+    "displayName": "Message"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "internal_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "message_type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "bonus_popup",
+        "inline_notice",
+        "tooltip",
+        "modal",
+        "banner"
+      ]
+    },
+    "page_types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::page-type.page-type",
+      "inversedBy": "messages"
+    },
+    "verticals": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::vertical.vertical",
+      "inversedBy": "messages"
+    },
+    "message_title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "message_body": {
+      "type": "text",
+      "required": true
+    },
+    "use_external_cta": {
+      "type": "boolean"
+    },
+    "bonus_source": {
+      "type": "enumeration",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "message_type"
+            },
+            "bonus_popup"
+          ]
+        }
+      },
+      "enum": [
+        "primary_bonus",
+        "selected_bonus"
+      ]
+    },
+    "country_mode": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "all",
+        "specific"
+      ]
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

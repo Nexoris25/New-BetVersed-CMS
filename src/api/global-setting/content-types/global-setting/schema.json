@@ -67,6 +67,32 @@
       "type": "component",
       "component": "unit.responsible-gambling",
       "repeatable": true
+    },
+    "bookmaker_review_ctas": {
+      "type": "component",
+      "component": "unit.global-cta-pair",
+      "repeatable": false,
+      "required": true
+    },
+    "casino_review_ctas": {
+      "type": "component",
+      "component": "unit.global-cta-pair",
+      "repeatable": false
+    },
+    "sports_bonus_review_ctas": {
+      "type": "component",
+      "component": "unit.global-cta-pair",
+      "repeatable": false
+    },
+    "casino_bonus_review_ctas": {
+      "type": "component",
+      "component": "unit.global-cta-pair",
+      "repeatable": false
+    },
+    "app_review_ctas": {
+      "type": "component",
+      "component": "unit.global-cta-pair",
+      "repeatable": false
     }
   }
 }

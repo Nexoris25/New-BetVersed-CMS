@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "verticals",
+  "info": {
+    "singularName": "vertical",
+    "pluralName": "verticals",
+    "displayName": "Vertical"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "affiliate_link": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::affiliate-link.affiliate-link",
+      "inversedBy": "verticals"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::message.message",
+      "mappedBy": "verticals"
+    }
+  }
+}

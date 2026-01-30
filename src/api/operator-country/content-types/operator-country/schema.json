@@ -130,6 +130,12 @@
       "relation": "manyToMany",
       "target": "api::sportsbook-bonus.sportsbook-bonus",
       "inversedBy": "alternatives"
+    },
+    "affiliate_links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::affiliate-link.affiliate-link",
+      "mappedBy": "bookmaker"
     }
   }
 }

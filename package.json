@@ -16,15 +16,19 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^6.0.3",
-    "@strapi/plugin-cloud": "5.31.0",
-    "@strapi/plugin-users-permissions": "5.31.0",
-    "@strapi/strapi": "5.31.0",
+    "@strapi/plugin-cloud": "5.34.0",
+    "@strapi/plugin-users-permissions": "5.34.0",
+    "@strapi/strapi": "5.34.0",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
   },
+  "overrides": {
+    "esbuild": "0.24.2"
+  },
+  
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",

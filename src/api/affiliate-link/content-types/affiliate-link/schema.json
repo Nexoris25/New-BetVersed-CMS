@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "affiliate_links",
+  "info": {
+    "singularName": "affiliate-link",
+    "pluralName": "affiliate-links",
+    "displayName": "Affiliate Link"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "bookmaker": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::operator-country.operator-country",
+      "inversedBy": "affiliate_links"
+    },
+    "verticals": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vertical.vertical",
+      "mappedBy": "affiliate_link"
+    },
+    "country_mode": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "specific",
+        "international"
+      ]
+    },
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "country_mode"
+            },
+            "specific"
+          ]
+        }
+      },
+      "inversedBy": "affiliate_links"
+    },
+    "target_url": {
+      "type": "string",
+      "required": true
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false
+    },
+    "priority": {
+      "type": "integer",
+      "required": true,
+      "default": 100,
+      "max": 100
+    }
+  }
+}

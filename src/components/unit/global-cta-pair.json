@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_unit_global_cta_pairs",
+  "info": {
+    "displayName": "Global CTA Pair"
+  },
+  "options": {},
+  "attributes": {
+    "internal_cta": {
+      "type": "component",
+      "component": "unit.global-cta",
+      "repeatable": false,
+      "required": true
+    },
+    "external_cta": {
+      "type": "component",
+      "component": "unit.global-cta",
+      "repeatable": false,
+      "required": false
+    }
+  },
+  "config": {}
+}

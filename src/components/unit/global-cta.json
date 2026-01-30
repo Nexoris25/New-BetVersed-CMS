@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_unit_global_ctas",
+  "info": {
+    "displayName": "Global CTA"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "action_type": {
+      "type": "enumeration",
+      "enum": [
+        "internal",
+        "external"
+      ]
+    },
+    "style_variant": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "ghost"
+      ]
+    },
+    "open_in_new_tab": {
+      "type": "boolean",
+      "default": true
+    },
+    "is_enabled": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}
