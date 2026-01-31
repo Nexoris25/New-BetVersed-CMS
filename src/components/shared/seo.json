@@ -42,10 +42,12 @@
       "type": "string"
     },
     "noIndex": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "noFollow": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     }
   },
   "config": {}

@@ -604,8 +604,8 @@ export interface SharedSeo extends Struct.ComponentSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 60;
       }>;
-    noFollow: Schema.Attribute.Boolean;
-    noIndex: Schema.Attribute.Boolean;
+    noFollow: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    noIndex: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     og_description: Schema.Attribute.Text &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 160;
