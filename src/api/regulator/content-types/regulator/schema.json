@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "regulators",
+  "info": {
+    "singularName": "regulator",
+    "pluralName": "regulators",
+    "displayName": "Regulator"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "short_code": {
+      "type": "string"
+    },
+    "country": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "regulators"
+    },
+    "website": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

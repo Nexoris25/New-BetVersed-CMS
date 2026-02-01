@@ -1621,6 +1621,10 @@ export interface ApiCountryCountry extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    regulators: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::regulator.regulator'
+    >;
     richText: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
@@ -1770,10 +1774,10 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
       'global.analytics-and-tracking',
       false
     >;
-    app_review_ctas: Schema.Attribute.Component<'unit.global-cta-pair', false>;
+    app_review_ctas: Schema.Attribute.Component<'unit.global-cta-pair', true>;
     bookmaker_review_ctas: Schema.Attribute.Component<
       'unit.global-cta-pair',
-      false
+      true
     > &
       Schema.Attribute.Required;
     brand_information: Schema.Attribute.Component<
@@ -1782,16 +1786,17 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     >;
     casino_bonus_review_ctas: Schema.Attribute.Component<
       'unit.global-cta-pair',
-      false
+      true
     >;
     casino_review_ctas: Schema.Attribute.Component<
       'unit.global-cta-pair',
-      false
+      true
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     default_seoMeta: Schema.Attribute.Component<'shared.seo', false>;
+    global_ctas: Schema.Attribute.Component<'shared.cta', true>;
     global_url_and_local_setting: Schema.Attribute.Component<
       'global.global-ur-ls-and-locale-settings',
       false
@@ -1810,6 +1815,7 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
       'global.maintenance-mode',
       false
     >;
+    pop_ups: Schema.Attribute.Component<'shared.popup', true>;
     publishedAt: Schema.Attribute.DateTime;
     responsibleGamblingMessage: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
@@ -1824,7 +1830,7 @@ export interface ApiGlobalSettingGlobalSetting extends Struct.SingleTypeSchema {
     >;
     sports_bonus_review_ctas: Schema.Attribute.Component<
       'unit.global-cta-pair',
-      false
+      true
     >;
     supportOrganizations: Schema.Attribute.Component<
       'unit.responsible-gambling',
@@ -2035,7 +2041,7 @@ export interface ApiOperatorCountryOperatorCountry
     currency: Schema.Attribute.String;
     entry_year: Schema.Attribute.String;
     is_active: Schema.Attribute.Boolean;
-    license_detail: Schema.Attribute.Component<'shared.license-detail', true>;
+    licenses: Schema.Attribute.Component<'shared.license', true>;
     local_name: Schema.Attribute.String;
     local_support: Schema.Attribute.Component<'shared.contact-detail', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -2366,6 +2372,37 @@ export interface ApiRedirectRedirect extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRegulatorRegulator extends Struct.CollectionTypeSchema {
+  collectionName: 'regulators';
+  info: {
+    displayName: 'Regulator';
+    pluralName: 'regulators';
+    singularName: 'regulator';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    country: Schema.Attribute.Relation<'manyToOne', 'api::country.country'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::regulator.regulator'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    short_code: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    website: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -3417,6 +3454,7 @@ declare module '@strapi/strapi' {
       'api::payment-method.payment-method': ApiPaymentMethodPaymentMethod;
       'api::privacy-policy.privacy-policy': ApiPrivacyPolicyPrivacyPolicy;
       'api::redirect.redirect': ApiRedirectRedirect;
+      'api::regulator.regulator': ApiRegulatorRegulator;
       'api::responsible-gambling.responsible-gambling': ApiResponsibleGamblingResponsibleGambling;
       'api::software-provider.software-provider': ApiSoftwareProviderSoftwareProvider;
       'api::sportsbook-bonus.sportsbook-bonus': ApiSportsbookBonusSportsbookBonus;

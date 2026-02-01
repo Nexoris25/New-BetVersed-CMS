@@ -458,6 +458,35 @@ export interface SharedCountrySpecificNavigation
   };
 }
 
+export interface SharedCta extends Struct.ComponentSchema {
+  collectionName: 'components_shared_ctas';
+  info: {
+    displayName: 'CTA';
+  };
+  attributes: {
+    affiliate_links: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::affiliate-link.affiliate-link'
+    >;
+    cta_type: Schema.Attribute.Enumeration<['internal', 'external']> &
+      Schema.Attribute.Required;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    purpose: Schema.Attribute.Enumeration<['explore', 'convert']> &
+      Schema.Attribute.Required;
+    review_type: Schema.Attribute.Enumeration<
+      [
+        'sportsbook_review',
+        'casino_review',
+        'sportsbook_bonus',
+        'casino_bonus',
+        'app',
+        'all_reviews',
+      ]
+    > &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface SharedCtaButton extends Struct.ComponentSchema {
   collectionName: 'components_shared_cta_buttons';
   info: {
@@ -497,21 +526,26 @@ export interface SharedFaqsItem extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedLicenseDetail extends Struct.ComponentSchema {
-  collectionName: 'components_shared_license_details';
+export interface SharedLicense extends Struct.ComponentSchema {
+  collectionName: 'components_shared_licenses';
   info: {
-    displayName: 'License Detail';
+    displayName: 'license';
   };
   attributes: {
     license_type: Schema.Attribute.Enumeration<
-      ['Local License', 'Foreign License']
+      ['local', 'foreign', 'provisional']
+    > &
+      Schema.Attribute.Required;
+    licensed_vertical: Schema.Attribute.Component<
+      'unit.licensed-vertical',
+      true
+    > &
+      Schema.Attribute.Required;
+    Name: Schema.Attribute.String;
+    regulator: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::regulator.regulator'
     >;
-    license_type_and_number: Schema.Attribute.Component<
-      'unit.label-and-value',
-      false
-    >;
-    regulator: Schema.Attribute.String;
-    regulator_website: Schema.Attribute.String;
   };
 }
 
@@ -523,6 +557,21 @@ export interface SharedNavLink extends Struct.ComponentSchema {
   attributes: {
     label: Schema.Attribute.String;
     url: Schema.Attribute.String;
+  };
+}
+
+export interface SharedPopup extends Struct.ComponentSchema {
+  collectionName: 'components_shared_popups';
+  info: {
+    displayName: 'Popup';
+  };
+  attributes: {
+    ctas: Schema.Attribute.Component<'shared.cta', true> &
+      Schema.Attribute.Required;
+    description: Schema.Attribute.Text;
+    popup_type: Schema.Attribute.Enumeration<['review_entry', 'bonus_click']> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -882,6 +931,18 @@ export interface UnitLabelAndValue extends Struct.ComponentSchema {
   };
 }
 
+export interface UnitLicensedVertical extends Struct.ComponentSchema {
+  collectionName: 'components_unit_licensed_verticals';
+  info: {
+    displayName: 'licensed_vertical';
+  };
+  attributes: {
+    license_number: Schema.Attribute.String & Schema.Attribute.Required;
+    vertical: Schema.Attribute.Enumeration<['sportsbook', 'casino', 'lotto']> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface UnitNavDropdownGroup extends Struct.ComponentSchema {
   collectionName: 'components_unit_nav_dropdown_groups';
   info: {
@@ -973,11 +1034,13 @@ declare module '@strapi/strapi' {
       'shared.contact-detail': SharedContactDetail;
       'shared.contact-form': SharedContactForm;
       'shared.country-specific-navigation': SharedCountrySpecificNavigation;
+      'shared.cta': SharedCta;
       'shared.cta-button': SharedCtaButton;
       'shared.fa-qs-section': SharedFaQsSection;
       'shared.faqs-item': SharedFaqsItem;
-      'shared.license-detail': SharedLicenseDetail;
+      'shared.license': SharedLicense;
       'shared.nav-link': SharedNavLink;
+      'shared.popup': SharedPopup;
       'shared.primary-nav-item': SharedPrimaryNavItem;
       'shared.pros-cons': SharedProsCons;
       'shared.public-url': SharedPublicUrl;
@@ -999,6 +1062,7 @@ declare module '@strapi/strapi' {
       'unit.key-metrics': UnitKeyMetrics;
       'unit.label': UnitLabel;
       'unit.label-and-value': UnitLabelAndValue;
+      'unit.licensed-vertical': UnitLicensedVertical;
       'unit.nav-dropdown-group': UnitNavDropdownGroup;
       'unit.pros': UnitPros;
       'unit.responsible-gambling': UnitResponsibleGambling;

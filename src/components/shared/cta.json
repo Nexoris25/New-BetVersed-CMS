@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_shared_ctas",
+  "info": {
+    "displayName": "CTA"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "cta_type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "internal",
+        "external"
+      ]
+    },
+    "purpose": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "explore",
+        "convert"
+      ]
+    },
+    "review_type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "sportsbook_review",
+        "casino_review",
+        "sportsbook_bonus",
+        "casino_bonus",
+        "app",
+        "all_reviews"
+      ]
+    },
+    "affiliate_links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::affiliate-link.affiliate-link",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "cta_type"
+            },
+            "external"
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}

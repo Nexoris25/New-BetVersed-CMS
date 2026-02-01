@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_unit_licensed_verticals",
+  "info": {
+    "displayName": "licensed_vertical"
+  },
+  "options": {},
+  "attributes": {
+    "vertical": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "sportsbook",
+        "casino",
+        "lotto"
+      ]
+    },
+    "license_number": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

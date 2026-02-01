@@ -71,28 +71,38 @@
     "bookmaker_review_ctas": {
       "type": "component",
       "component": "unit.global-cta-pair",
-      "repeatable": false,
+      "repeatable": true,
       "required": true
     },
     "casino_review_ctas": {
       "type": "component",
       "component": "unit.global-cta-pair",
-      "repeatable": false
+      "repeatable": true
     },
     "sports_bonus_review_ctas": {
       "type": "component",
       "component": "unit.global-cta-pair",
-      "repeatable": false
+      "repeatable": true
     },
     "casino_bonus_review_ctas": {
       "type": "component",
       "component": "unit.global-cta-pair",
-      "repeatable": false
+      "repeatable": true
     },
     "app_review_ctas": {
       "type": "component",
       "component": "unit.global-cta-pair",
-      "repeatable": false
+      "repeatable": true
+    },
+    "global_ctas": {
+      "type": "component",
+      "component": "shared.cta",
+      "repeatable": true
+    },
+    "pop_ups": {
+      "type": "component",
+      "component": "shared.popup",
+      "repeatable": true
     }
   }
 }

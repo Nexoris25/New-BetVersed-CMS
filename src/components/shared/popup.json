@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_popups",
+  "info": {
+    "displayName": "Popup"
+  },
+  "options": {},
+  "attributes": {
+    "popup_type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "review_entry",
+        "bonus_click"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "ctas": {
+      "type": "component",
+      "component": "shared.cta",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

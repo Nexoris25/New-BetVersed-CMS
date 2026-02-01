@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_shared_licenses",
+  "info": {
+    "displayName": "license"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "regulator": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::regulator.regulator"
+    },
+    "license_type": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "local",
+        "foreign",
+        "provisional"
+      ]
+    },
+    "licensed_vertical": {
+      "type": "component",
+      "component": "unit.licensed-vertical",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

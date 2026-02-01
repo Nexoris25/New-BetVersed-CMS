@@ -106,6 +106,12 @@
       "relation": "oneToMany",
       "target": "api::affiliate-link.affiliate-link",
       "mappedBy": "country"
+    },
+    "regulators": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::regulator.regulator",
+      "mappedBy": "country"
     }
   }
 }

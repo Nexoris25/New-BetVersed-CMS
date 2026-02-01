@@ -11,11 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "license_detail": {
-      "type": "component",
-      "component": "shared.license-detail",
-      "repeatable": true
-    },
     "local_support": {
       "type": "component",
       "component": "shared.contact-detail",
@@ -136,6 +131,11 @@
       "relation": "oneToMany",
       "target": "api::affiliate-link.affiliate-link",
       "mappedBy": "bookmaker"
+    },
+    "licenses": {
+      "type": "component",
+      "component": "shared.license",
+      "repeatable": true
     }
   }
 }
