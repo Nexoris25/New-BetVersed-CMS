@@ -116,7 +116,6 @@ export interface ContentHighligtedBonusOffer extends Struct.ComponentSchema {
         }
       >;
     bonus_name: Schema.Attribute.String;
-    cta_button: Schema.Attribute.Component<'shared.cta-button', false>;
     exclusive_code: Schema.Attribute.Boolean;
     promo_code: Schema.Attribute.String;
   };

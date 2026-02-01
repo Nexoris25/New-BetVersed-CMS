@@ -23,11 +23,6 @@
     },
     "exclusive_code": {
       "type": "boolean"
-    },
-    "cta_button": {
-      "type": "component",
-      "component": "shared.cta-button",
-      "repeatable": false
     }
   },
   "config": {}
