@@ -89,33 +89,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "main_content": {
-      "type": "customField",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "customField": "plugin::ckeditor5.CKEditor",
-      "options": {
-        "preset": "defaultHtml"
-      }
-    },
-    "more_content_options": {
-      "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "components": [
-        "unit.label-and-value",
-        "shared.cta-button",
-        "content.rich-text",
-        "content.bonus-offer",
-        "content.trust-signals"
-      ]
-    },
     "faqs": {
       "type": "component",
       "pluginOptions": {
@@ -208,6 +181,16 @@
         }
       },
       "component": "shared.tldr",
+      "repeatable": false
+    },
+    "richText": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "content.rich-text",
       "repeatable": false
     }
   }

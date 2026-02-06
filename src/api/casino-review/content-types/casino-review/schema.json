@@ -79,22 +79,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "main_content": {
-      "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "components": [
-        "content.rich-text",
-        "shared.cta-button",
-        "unit.label-and-value",
-        "unit.responsible-gambling",
-        "content.highligted-bonus-offer",
-        "content.heading"
-      ]
-    },
     "faqs": {
       "type": "component",
       "pluginOptions": {
@@ -209,6 +193,16 @@
         }
       },
       "component": "shared.tldr",
+      "repeatable": false
+    },
+    "richText": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "content.rich-text",
       "repeatable": false
     }
   }

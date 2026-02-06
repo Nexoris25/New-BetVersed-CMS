@@ -901,32 +901,6 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::casino-bonus.casino-bonus'
     >;
-    main_content: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    more_content_options: Schema.Attribute.DynamicZone<
-      [
-        'unit.label-and-value',
-        'shared.cta-button',
-        'content.rich-text',
-        'content.bonus-offer',
-        'content.trust-signals',
-      ]
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
@@ -956,6 +930,12 @@ export interface ApiCasinoBonusCasinoBonus extends Struct.CollectionTypeSchema {
         };
       }>;
     reviewed_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    richText: Schema.Attribute.Component<'content.rich-text', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1168,21 +1148,6 @@ export interface ApiCasinoReviewCasinoReview
       'oneToMany',
       'api::casino-review.casino-review'
     >;
-    main_content: Schema.Attribute.DynamicZone<
-      [
-        'content.rich-text',
-        'shared.cta-button',
-        'unit.label-and-value',
-        'unit.responsible-gambling',
-        'content.highligted-bonus-offer',
-        'content.heading',
-      ]
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
@@ -1198,6 +1163,12 @@ export interface ApiCasinoReviewCasinoReview
       'content.review-summary',
       false
     > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    richText: Schema.Attribute.Component<'content.rich-text', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -2578,32 +2549,6 @@ export interface ApiSportsbookBonusSportsbookBonus
       'oneToMany',
       'api::sportsbook-bonus.sportsbook-bonus'
     >;
-    main_content: Schema.Attribute.RichText &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    more_content_options: Schema.Attribute.DynamicZone<
-      [
-        'content.rich-text',
-        'content.highligted-bonus-offer',
-        'shared.cta-button',
-        'unit.label-and-value',
-        'content.heading',
-      ]
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
@@ -2629,6 +2574,12 @@ export interface ApiSportsbookBonusSportsbookBonus
         };
       }>;
     reviewed_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    richText: Schema.Attribute.Component<'content.rich-text', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2754,14 +2705,6 @@ export interface ApiSportsbookReviewSportsbookReview
       'oneToMany',
       'api::sportsbook-review.sportsbook-review'
     >;
-    mainContent: Schema.Attribute.DynamicZone<
-      ['content.rich-text', 'content.heading']
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     operator_country: Schema.Attribute.Relation<
       'manyToOne',
       'api::operator-country.operator-country'
@@ -2795,6 +2738,12 @@ export interface ApiSportsbookReviewSportsbookReview
         };
       }>;
     reviewed_by: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    richText: Schema.Attribute.Component<'content.rich-text', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     seoMeta: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

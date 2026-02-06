@@ -79,18 +79,6 @@
       "component": "content.review-summary",
       "repeatable": false
     },
-    "mainContent": {
-      "type": "dynamiczone",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "components": [
-        "content.rich-text",
-        "content.heading"
-      ]
-    },
     "faqs": {
       "type": "component",
       "pluginOptions": {
@@ -193,6 +181,16 @@
         }
       },
       "component": "shared.tldr",
+      "repeatable": false
+    },
+    "richText": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "content.rich-text",
       "repeatable": false
     }
   }
