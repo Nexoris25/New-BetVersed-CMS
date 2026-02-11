@@ -17,9 +17,15 @@
     "role": {
       "type": "enumeration",
       "enum": [
-        "Reviewer",
-        "Fact Checker",
-        "Editor"
+        "iGaming Analyst and Reviewer",
+        "iGaming Content Editor and Fact-checker",
+        "iGaming Content Editor",
+        "iGaming Content Writer",
+        "Reviewer and Fact-checker",
+        "iGaming Content Writer and Editor",
+        "Sports Betting Analyst",
+        "Casino Gaming Analyst",
+        "iGaming Content Writer and Reviewer"
       ]
     },
     "shortBio": {

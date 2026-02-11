@@ -735,7 +735,19 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.Enumeration<['Reviewer', 'Fact Checker', 'Editor']>;
+    role: Schema.Attribute.Enumeration<
+      [
+        'iGaming Analyst and Reviewer',
+        'iGaming Content Editor and Fact-checker',
+        'iGaming Content Editor',
+        'iGaming Content Writer',
+        'Reviewer and Fact-checker',
+        'iGaming Content Writer and Editor',
+        'Sports Betting Analyst',
+        'Casino Gaming Analyst',
+        'iGaming Content Writer and Reviewer',
+      ]
+    >;
     shortBio: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
         'plugin::ckeditor5.CKEditor',
