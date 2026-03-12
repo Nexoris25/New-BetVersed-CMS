@@ -24,8 +24,8 @@
       }
     },
     "slug": {
-      "type": "uid",
-      "targetField": "page_title"
+      "type": "string",
+      "targetField": "short_title"
     },
     "review_type": {
       "type": "enumeration",
